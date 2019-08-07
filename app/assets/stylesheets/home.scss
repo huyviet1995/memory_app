@@ -64,4 +64,31 @@ html, body {
   overflow: hidden;
   width: 100%;
 }
+
+.main-body .game-section {
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  position: absolute; 
+}
+
+.main-body .main-board {
+  margin: auto;
+  margin:20%;
+  display: inline-block;
+}
+
+.main-board .row {
+  width: inherit;
+  display: inline-block; 
+}
+
+.main-body .front-square {
+  height: 50px;
+  width: 50px;
+  border-width: 1px;
+  background-color: grey; 
+  float: left; 
+  margin: 2px;
+}
 /*== End of main==*/
