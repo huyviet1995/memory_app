@@ -1,0 +1,38 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.header {
+  width: 100%;
+  height: 30px; 
+  background-color: red; 
+}
+
+.header .container{
+  text-align: right; 
+  padding-top: 10px;
+  padding-right: 10px; 
+}
+
+.header .container .menu {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white; 
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace; 
+}
+
+.header .container .menu:hover {
+  font-size: 25px; 
+  color: yellow;
+}
+
+.header .container .intro {
+  color: white;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace; 
+  float: left;
+  position: relative;
+  text-align: left; 
+}
