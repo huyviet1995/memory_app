@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
 
   def game 
+    @random_square_coordinates ||= random_flipped_square_generator(5,5,4).values
   end
 
   def scores

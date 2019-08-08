@@ -10,6 +10,9 @@
   </div>
 
   <div class = "game-section">
+    <% @random_square_coordinates.each do |coordinate|%>
+    <input type = 'hidden' name='random-square-coordinate' value = <%="#{coordinate.to_json}"%> >
+    <%end%>
     <div class = "main-board">
         <span class = "row">
           <div class = "front-square"></div>
