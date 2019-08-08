@@ -1,12 +1,12 @@
 <div class = "main-body">
   <div class = "score-section">
     <div class = "level">
-      <p> LEVEL 7 </p>
+      <p> LEVEL <%= @current_lvl%> </p>
     </div>
     <div class = "score">
       <p> SCORE: 100 pts</p>
     </div>
-    <%= link_to  '<button type="button"> NEXT LEVEL </button>'.html_safe, game_path, class: "next-level btn btn-primary"  %>
+    <%= link_to  '<button type="button"> NEXT LEVEL </button>'.html_safe, "#{game_path}?lvl=#{@current_lvl+1}", class: "next-level btn btn-primary"  %>
   </div>
 
   <div class = "game-section">

@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :current_lvl, only: [:game] 
 
   def index
   end
@@ -23,7 +24,7 @@ class HomeController < ApplicationController
     visited_col = Array.new(c) 
     result = Hash.new
 
-    for i in 1..no_of_squares do
+    for i in 1..no_of_squares do 
       result[i] = Array.new(2)
       loop do
         random_row = rand(r)
@@ -40,6 +41,21 @@ class HomeController < ApplicationController
     
     result
 
+  end
+
+  def current_lvl
+    if game_params[:lvl].present? && game_params[:lvl].to_i > 0
+      @current_lvl = game_params[:lvl].to_i <20 ? game_params[:lvl].to_i : 20
+    else
+      @current_lvl = 1
+    end
+    @current_lvl
+  end
+
+  def game_params
+    @game_params ||= params.permit(
+      :lvl
+    )
   end
 
 end
