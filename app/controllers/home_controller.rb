@@ -5,4 +5,14 @@ class HomeController < ApplicationController
 
   def game 
   end
+
+  def scores
+  end
+
+  def tutorial
+  end
+
+  def about
+  end 
+
 end

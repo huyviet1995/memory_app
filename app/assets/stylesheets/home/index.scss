@@ -5,8 +5,10 @@
 
 .main-menu .menu-board {
   height: 50%;
-  margin-top: 8%;
+  padding-top: 20px;
   text-align: center; 
+  margin: auto; 
+  width: 25%;
 }
 
 .main-menu .menu-board .option {
@@ -14,9 +16,14 @@
   float: left;
   padding: 10px;
   font-size: 20px; 
+  height: 20px;
 }
 
 .main-menu .menu-board .option:hover {
   font-size: 25px; 
   color: red;  
 } 
+
+.main-menu .intro {
+  text-align: center;
+}

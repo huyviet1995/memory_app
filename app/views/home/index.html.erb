@@ -4,9 +4,9 @@
   </div>
 
   <div class = "menu-board">
-    <span class = "option start"> START </span>
-    <span class = "option scores"> SCORES</span>
-    <span class = "option tutorial"> TUTORIAL </span>
-    <span class = "option about"> ABOUT </span>
+    <%= link_to 'START', game_path, class: 'option start '%>
+    <%= link_to 'SCORES', scores_path, class: 'option scores'%>
+    <%= link_to 'TUTORIAL', tutorial_path, class: 'option tutorial'%>
+    <%= link_to 'ABOUT', about_path, class: 'option about'%>
   </div>
 </div>

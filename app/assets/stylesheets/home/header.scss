@@ -1,0 +1,38 @@
+
+/*Header*/
+.header {
+  width: 100%;
+  height: 30px; 
+  background-color: red; 
+}
+
+.header .container{
+  text-align: right; 
+  padding-top: 10px;
+  padding-right: 10px; 
+  font-size: 15px; 
+}
+
+.header .container .menu {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white; 
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace; 
+}
+
+.header .container .menu:hover {
+  font-size: 20px; 
+  color: yellow;
+}
+
+.header .container .intro {
+  color: white;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace; 
+  float: left;
+  position: relative;
+  text-align: left; 
+}
+
+/*==End of header==*/
