@@ -1,0 +1,22 @@
+.main-menu {
+  height: 85%;
+  width: 100%; 
+}
+
+.main-menu .menu-board {
+  height: 50%;
+  margin-top: 8%;
+  text-align: center; 
+}
+
+.main-menu .menu-board .option {
+  width: 100%;
+  float: left;
+  padding: 10px;
+  font-size: 20px; 
+}
+
+.main-menu .menu-board .option:hover {
+  font-size: 25px; 
+  color: red;  
+} 
