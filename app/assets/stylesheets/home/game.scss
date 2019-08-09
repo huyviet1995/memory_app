@@ -60,8 +60,45 @@ html, body {
   height: 50px;
   width: 50px; 
   border-width: 1px;
-  background-color: grey; 
+  background-color: transparent; 
   float: left; 
   margin: 2px;
+  perspective: 1000px;
+}
+
+/* Flip square effect*/
+.front-square .flip-square-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.front-square:hover .flip-square-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-square-front, .flip-square-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid black;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-square-front {
+  background-color: red;
+  color: black;
+}
+
+/* Style the back side */
+.flip-square-back {
+  background-color: white;
+  color: white;
+  transform: rotateY(180deg);
 }
 /*== End of main==*/
