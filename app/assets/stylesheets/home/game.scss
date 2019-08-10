@@ -72,13 +72,19 @@ html, body {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.4s;
+  transition: transform 0.3s;
   transform-style: preserve-3d;
 }
 
-.front-square:hover .flip-square-inner, .flip-square-at-reload {
+.front-square .flip-square-inner.flip-square-at-reload,.flip-on-click {
   transform: rotateY(180deg);
 }
+
+/* Hover on a square would turn it orange*/
+.front-square:hover .flip-square-inner .flip-square-front {
+  background-color: orange; 
+}
+
 
 /* Position the front and back side */
 .flip-square-front, .flip-square-back {

@@ -22,4 +22,15 @@ $(document).ready(function() {
   let reload_square_coordinates = JSON.parse($('input[name=random-square-coordinates]').val()); 
 
   Game.flipSquareAtReload(reload_square_coordinates);
+
+  /** Each square when clicked should should be flipped */
+  $('.front-square .flip-square-inner').on('click', function() {
+    if ($(this).hasClass('flip-on-click')) {
+      $(this).removeClass('flip-on-click');
+    }
+    else {
+      $(this).addClass('flip-on-click');
+    }
+  })
+
 })
