@@ -14,16 +14,18 @@
 .main-menu .menu-board .option {
   width: 100%;
   float: left;
-  padding: 10px;
-  font-size: 20px; 
-  height: 20px;
+  padding: 20px;
+  font-size: 50px; 
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .main-menu .menu-board .option:hover {
-  font-size: 25px; 
+  font-size: 70px; 
   color: red;  
 } 
 
 .main-menu .intro {
+  font-family: 'Courier New', Courier, monospace;
   text-align: center;
+  font-size: 50px;
 }

@@ -2,37 +2,34 @@
 /*Header*/
 .header {
   width: 100%;
-  height: 30px; 
+  height: 60px; 
   background-color: red; 
 }
 
-.header .container{
-  text-align: right; 
-  padding-top: 10px;
-  padding-right: 10px; 
-  font-size: 15px; 
+.header .container {
+  max-width: 90%;
 }
 
-.header .container .menu {
-  padding-left: 10px;
-  padding-right: 10px;
+/* Style the menu text*/
+.header .container .menu .main, .help, .about {
   color: white; 
-  font-size: 18px;
+  font-size: 40px;
   font-family: 'Courier New', Courier, monospace; 
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .header .container .menu:hover {
-  font-size: 20px; 
+  font-size: 42px; 
   color: yellow;
 }
 
 .header .container .intro {
   color: white;
-  font-size: 20px;
+  font-size: 40px;
   font-family: 'Courier New', Courier, monospace; 
   float: left;
   position: relative;
-  text-align: left; 
 }
 
 /*==End of header==*/

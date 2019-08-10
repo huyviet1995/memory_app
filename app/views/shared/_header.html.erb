@@ -1,8 +1,10 @@
-<nav class = "header navbar navbar-fixed-top">
+<nav class = "header navbar navbar-fixed-top navbar-text">
   <div class = "container">
     <%= link_to 'TEST YOUR MEMORY', main_path, class: 'intro'%>
-    <%= link_to 'MAIN', main_path, class: 'main menu'%>
-    <%= link_to 'HELP', tutorial_path, class: 'help menu'%>
-    <%= link_to 'ABOUT', about_path, class: 'about menu'%>
+    <div class = 'menu'>
+      <%= link_to 'MAIN', main_path, class: 'main'%>
+      <%= link_to 'HELP', tutorial_path, class: 'help'%>
+      <%= link_to 'ABOUT', about_path, class: 'about'%>
+    </div>
   </div>
 </nav>

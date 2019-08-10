@@ -6,8 +6,6 @@ html, body {
   height: 100%;
 }
 
-
-
 /*Main*/
 .main-body {
   height: 85%;
@@ -36,6 +34,8 @@ html, body {
   margin: auto;
   margin:20%;
   display: inline-block;
+  max-width: 500px;
+  max-height: 500px; 
 }
 
 .main-board .row {
@@ -43,22 +43,29 @@ html, body {
   display: inline-block; 
 }
 
+/* Next level button*/
+.next-level {
+  width: 30px;
+  height: 30px; 
+}
+
 .main-body .score-section .level p {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace; 
+  font-size: 60px;
   margin-top: 25%;
 }
 
 .main-body .score-section .score p {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;   
+  font-size: 40px;
 }
 
+/* Style the front square*/
 .main-body .front-square {
-  max-height: 60px;
-  max-width: 60px;
-  height: 50px;
-  width: 50px; 
+  max-height: 150px;
+  max-width: 150px;
+  height: 100px;
+  width: 100px; 
   border-width: 1px;
   background-color: transparent; 
   float: left; 
@@ -84,7 +91,6 @@ html, body {
 .front-square:hover .flip-square-inner .flip-square-front {
   background-color: orange; 
 }
-
 
 /* Position the front and back side */
 .flip-square-front, .flip-square-back {
