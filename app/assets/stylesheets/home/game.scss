@@ -76,7 +76,7 @@ html, body {
   transform-style: preserve-3d;
 }
 
-.front-square:hover .flip-square-inner {
+.front-square:hover .flip-square-inner, .flip-square-at-reload {
   transform: rotateY(180deg);
 }
 

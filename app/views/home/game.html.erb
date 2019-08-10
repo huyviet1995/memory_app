@@ -10,14 +10,12 @@
   </div>
 
   <div class = "game-section">
-    <% @random_square_coordinates.each do |coordinate|%>
-    <input type = 'hidden' name='random-square-coordinate' value = <%="#{coordinate.to_json}"%> >
-    <%end%>
+    <input type = 'hidden' name='random-square-coordinates' value = <%="#{@random_square_coordinates.to_json}"%> >
     <div class = "main-board">
-      <% for i in 1..4 do%>
+      <% for i in 0..3 do%>
         <span class = "row">
-          <% for j in 1..4 do%>
-            <div class = "front-square">
+          <% for j in 0..3 do%>
+            <div class = "front-square" coordinate = <%="#{i},#{j}"%>>
               <div class = 'flip-square-inner'>
                 <div class = 'flip-square-front'> </div>
                 <div class = 'flip-square-back'> </div>

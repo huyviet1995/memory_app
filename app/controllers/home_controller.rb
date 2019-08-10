@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
 
   def game 
-    @random_square_coordinates ||= random_flipped_square_generator(5,5,4).values
+    @random_square_coordinates ||= random_flipped_square_generator(4,4,3).values
   end
 
   def scores
@@ -39,14 +39,12 @@ class HomeController < ApplicationController
         end
       end 
     end
-    
     result
-
   end
 
   def current_lvl
     if game_params[:lvl].present? && game_params[:lvl].to_i > 0
-      @current_lvl = game_params[:lvl].to_i <20 ? game_params[:lvl].to_i : 20
+      @current_lvl = game_params[:lvl].to_i < 20 ? game_params[:lvl].to_i : 20
     else
       @current_lvl = 1
     end
