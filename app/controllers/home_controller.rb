@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :current_lvl, only: [:game] 
+
   def index
   end
 
