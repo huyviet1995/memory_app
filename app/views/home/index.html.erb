@@ -4,9 +4,9 @@
   </div>
 
   <div class = "menu-board">
-    <%= link_to 'START', game_path, class: 'option start '%>
-    <%= link_to 'SCORES', scores_path, class: 'option scores'%>
-    <%= link_to 'TUTORIAL', tutorial_path, class: 'option tutorial'%>
-    <%= link_to 'ABOUT', about_path, class: 'option about'%>
+    <%= link_to 'START', game_path, class: 'option start ', :data => { :reload => true}%>
+    <%= link_to 'SCORES', scores_path, class: 'option scores', :data => {:reload => true}%>
+    <%= link_to 'TUTORIAL', tutorial_path, class: 'option tutorial', :data => {:reload => true}%>
+    <%= link_to 'ABOUT', about_path, class: 'option about', :data => {:reload => true}%>
   </div>
 </div>

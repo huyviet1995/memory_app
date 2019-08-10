@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
   before_action :current_lvl, only: [:game] 
-
   def index
   end
 
   def game 
-    @random_square_coordinates ||= random_flipped_square_generator(4,4,3).values
+    @current_lvl = current_lvl
+    @random_square_coordinates = random_flipped_square_generator(4,4,3).values
   end
 
   def scores
