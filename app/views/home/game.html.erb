@@ -6,7 +6,7 @@
     <div class = "score">
       <p> SCORE: 100 pts</p>
     </div>
-    <%= link_to 'NEXT LEVEL'.html_safe, "#{game_path}?lvl=#{@current_lvl+1}", class: "next-level btn btn-primary"  %>
+    <%= link_to 'NEXT LEVEL', "#{game_path}?lvl=#{@current_lvl+1}", class: "next-level btn btn-primary btn-large"  %>
   </div>
 
   <div class = "game-section">

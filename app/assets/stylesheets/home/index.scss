@@ -5,7 +5,7 @@
 
 .main-menu .menu-board {
   height: 50%;
-  padding-top: 20px;
+  padding-top: 40px;
   text-align: center; 
   margin: auto; 
   width: 25%;
@@ -20,7 +20,7 @@
 }
 
 .main-menu .menu-board .option:hover {
-  font-size: 70px; 
+  font-size: 55px; 
   color: red;  
 } 
 
@@ -28,4 +28,6 @@
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
   font-size: 50px;
+  padding-top: 30px;
+  color: orangered;
 }
