@@ -43,6 +43,21 @@ html, body {
   display: inline-block; 
 }
 
+/* Ready message*/
+.main-body .ready-section {
+  text-align: center; 
+  font-size: 40px;
+  position: absolute;
+  width: 100%;
+  padding-top:10px; 
+}
+
+.main-body .ready-section .count {
+  font-size: 60px;
+}
+
+/* End of ready message*/
+
 /* Winning message*/
 .main-body .result-message {
   width: 100%;
