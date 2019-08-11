@@ -43,6 +43,19 @@ html, body {
   display: inline-block; 
 }
 
+/* Winning message*/
+.main-body .result-message {
+  width: 100%;
+  height: fit-content;
+  background-color: lightgreen;
+  margin-top: 30px;
+  position: absolute;
+  font-size: 60px;
+  color: white; 
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 /* Next level button*/
 .main-body .next-level{
   width: 200px;

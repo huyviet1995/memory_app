@@ -1,8 +1,9 @@
 Game = function() {};
+Game.result = -1;
 
 /** Remove the splice  */
 Game.chosenSquareCoordinates = []
-Game.reloadedFlipSquare = [] 
+Game.reloadedFlipSquares = [] 
 
 Game.sleep = function(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -21,18 +22,18 @@ Game.flipSquareAtReload = async function(coordinates) {
 }
 
 /** Level passes when all coordinates matched the random one */
+/** If given < pick < given + 2 => start checking, return false if not match, return true if match */
 Game.checkIfPassCurrentLevel = function() {
-  var chosenSquareCoordinate = Game.chosenSquareCoordinates;
-  var reloadedSquareCoordinate = Game.reloadedFlipSquare; 
-  if (chosenSquareCoordinate.length != reloadedSquareCoordinate.length) {
+  var chosenSquareCoordinates = Game.chosenSquareCoordinates;
+  var reloadedSquareCoordinates = Game.reloadedFlipSquares; 
+  if (chosenSquareCoordinates.length < reloadedSquareCoordinates.length) {
     return false;
   }
-  let currentLength = chosenSquareCoordinate.length; 
-  let matchCount = currentLength; 
-  for (var it = 0; it < currentLength; it++) {
-    for (var jt = 0; jt < currentLength; jt++) {
-      var picked = JSON.stringify(chosenSquareCoordinate[it]);
-      var given = JSON.stringify(reloadedSquareCoordinate[jt]);
+  let matchCount = reloadedSquareCoordinates.length;
+  for (var it = 0; it < chosenSquareCoordinates.length; it++) {
+    for (var jt = 0; jt < reloadedSquareCoordinates.length; jt++) {
+      var picked = JSON.stringify(chosenSquareCoordinates[it]);
+      var given = JSON.stringify(reloadedSquareCoordinates[jt]);
       if (picked == given) {
         matchCount = matchCount - 1; 
         if (matchCount == 0) {
@@ -45,10 +46,40 @@ Game.checkIfPassCurrentLevel = function() {
   return false;
 }
 
+/** Win when given < pick <= given + 2  and match! */
+/** Lose when pick > given + 2 */
+Game.checkIfWinning = function() {
+  var pick  = Game.chosenSquareCoordinates.length;
+  var given = Game.reloadedFlipSquares.length;
+  if (given <= pick && pick <= given+2 && Game.checkIfPassCurrentLevel()) {
+    return 1 
+  }
+  if (pick > given+2) {
+    return 0 
+  }
+  return -1;
+}
+
+Game.displayWinningMessage = function(message) {
+  message.empty();
+  message.css('background-color', 'light-green');
+  message.append('YOU WIN!');
+  message.show();
+} 
+
+Game.displayLosingMessage = function(message) {
+  message.empty();
+  message.css('background-color', 'red')
+  message.append('YOU LOSE!')
+  message.show();
+}
+
 $(document).ready(function() {
   /* Get all flip square coordinates at reload */
-  Game.reloadedFlipSquare = JSON.parse($('input[name=random-square-coordinates]').val()); 
-  Game.flipSquareAtReload(Game.reloadedFlipSquare);
+  Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val()); 
+  Game.flipSquareAtReload(Game.reloadedFlipSquares);
+  /** Hide winning message */
+  $('.main-body .result-message').hide();
 
   /** Each square when clicked should should be flipped */
   /** Push or remove element accordingly */ 
@@ -63,8 +94,15 @@ $(document).ready(function() {
         }
       }
       /* Start checking match coordinates if two lengths match */
-      if (Game.chosenSquareCoordinates.length == Game.reloadedFlipSquare.length) {
-        console.log(Game.checkIfPassCurrentLevel());
+      if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result != -1) {
+        Game.result = Game.checkIfWinning();
+        if (Game.result == 1) {
+          /** If winning, then display the message */
+          Game.displayWinningMessage($('.main-body .result-message'));
+        }
+        else if (Game.result == 0) {
+          Game.displayLosingMessage($('.main-body .result-message'));
+        } 
       }
     }
     else {
@@ -73,8 +111,16 @@ $(document).ready(function() {
       let pickedCoordinate = JSON.parse($(this).attr('coordinate'));
       Game.chosenSquareCoordinates.push(pickedCoordinate);
       /** Start checking coordinate when two lengths match*/
-      if (Game.chosenSquareCoordinates.length == Game.reloadedFlipSquare.length) {
-        console.log(Game.checkIfPassCurrentLevel());
+      /** If already winning, then stop checking */
+      if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result != 1) {
+        Game.result  = Game.checkIfWinning();
+        if (Game.result == 1) {
+          /** If winning, then display the message */
+          Game.displayWinningMessage($('.main-body .result-message'));
+        }
+        else if (Game.result == 0) {
+          Game.displayLosingMessage($('.main-body .result-message'));
+        }
       }
     }
   })
