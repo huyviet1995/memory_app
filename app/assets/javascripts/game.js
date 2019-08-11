@@ -70,19 +70,24 @@ Game.displayWinningMessage = function(message) {
 Game.displayLosingMessage = function(message) {
   message.empty();
   message.css('background-color', 'red')
-  message.append('YOU LOSE!')
+  message.append('YOU LOSE!');
   message.show();
 }
 
 $(document).ready(function() {
   /* Get all flip square coordinates at reload */
-  Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val()); 
-  Game.flipSquareAtReload(Game.reloadedFlipSquares);
   /** Hide winning message */
   $('.main-body .result-message').hide();
 
-  /** Each square when clicked should should be flipped */
-  /** Push or remove element accordingly */ 
+  /** Start playing button */
+  $('.main-body .next-level').on('click', function() {
+    Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val()); 
+    Game.flipSquareAtReload(Game.reloadedFlipSquares);
+  })
+
+  /** Each square when clicked should should be flipped
+   * Add the chosen squares to an array
+   */
   $('.front-square .flip-square-inner').on('click', function() {
     if ($(this).hasClass('flip-on-click')) {
       $(this).removeClass('flip-on-click');
@@ -94,7 +99,7 @@ $(document).ready(function() {
         }
       }
       /* Start checking match coordinates if two lengths match */
-      if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result != -1) {
+      if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result == -1) {
         Game.result = Game.checkIfWinning();
         if (Game.result == 1) {
           /** If winning, then display the message */
@@ -112,7 +117,7 @@ $(document).ready(function() {
       Game.chosenSquareCoordinates.push(pickedCoordinate);
       /** Start checking coordinate when two lengths match*/
       /** If already winning, then stop checking */
-      if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result != 1) {
+      if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result == -1) {
         Game.result  = Game.checkIfWinning();
         if (Game.result == 1) {
           /** If winning, then display the message */
