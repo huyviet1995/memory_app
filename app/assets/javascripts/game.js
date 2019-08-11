@@ -67,6 +67,7 @@ Game.showNextLevelButton = function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
     window.location.href = `/game?lvl=${currentLevel+1}`
   })
+  button.show();
 }
 
 Game.replayAfterLost = function() {
@@ -75,6 +76,7 @@ Game.replayAfterLost = function() {
   button.on('click', function() {
     window.location.href = '/game?lvl=1' 
   })
+  button.show();
 }
 
 Game.displayWinningMessage = function(message) {
@@ -96,20 +98,21 @@ $(document).ready(function() {
   /** Hide winning message */
   $('.main-body .result-message').hide();
 
-  /** Start playing button */
-  $('.main-body .next-level').on('click', function() {
-    Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val()); 
-    Game.flipSquareAtReload(Game.reloadedFlipSquares);
-  })
+  /** Start flipping square at reload */
+  Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val());
+  Game.flipSquareAtReload(Game.reloadedFlipSquares);
+
+  /** Hide button as the level starts */
+  $('.main-body .next-level').hide();
 
   /** Each square when clicked should should be flipped
-   * Add the chosen squares to an array
+   * Store the squares coordinates 
    */
   $('.front-square .flip-square-inner').on('click', function() {
     if ($(this).hasClass('flip-on-click')) {
       $(this).removeClass('flip-on-click');
       let pickedCoordinate = $(this).attr('coordinate');
-      /** remove the square coordinate */
+      /** Remove the square coordinate */
       for (var it = 0; it < Game.chosenSquareCoordinates.length; it++) {
         if (JSON.stringify(Game.chosenSquareCoordinates[it]) == pickedCoordinate) {
           Game.chosenSquareCoordinates.splice(it,1);
