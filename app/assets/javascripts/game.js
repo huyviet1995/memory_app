@@ -10,6 +10,22 @@ Game.sleep = function(ms) {
 }
 
 Game.flipSquareAtReload = async function(coordinates) {
+  var count = 2;
+  readySection = $('.ready-section');
+  readyCount = $('.ready-section .count');
+  for (var i = 0; i < 3; i++) {
+    count = count - 1;
+    await Game.sleep(1000);
+    readyCount.empty();
+    if (count == 0) {
+      readyCount.css('color', 'red');
+      readyCount.append('PLAY!'); 
+    }
+    else {
+      readyCount.append(count);
+    }
+  }
+  readySection.hide(); 
   for (let it = 0; it < coordinates.length; it++) {
     let coordinate = coordinates[it];
     $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`).addClass('flip-square-at-reload');
@@ -93,6 +109,7 @@ Game.displayLosingMessage = function(message) {
   message.show();
 }
 
+
 $(document).ready(function() {
   /* Get all flip square coordinates at reload */
   /** Hide winning message */
@@ -153,5 +170,4 @@ $(document).ready(function() {
       }
     }
   })
-
 })
