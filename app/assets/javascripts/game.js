@@ -60,6 +60,23 @@ Game.checkIfWinning = function() {
   return -1;
 }
 
+Game.showNextLevelButton = function() {
+  button = $('.main-body .next-level')
+  button.val('NEXT LEVEL');
+  button.on('click', function() {
+    var currentLevel = parseInt($("input[name=current-level]").val());
+    window.location.href = `/game?lvl=${currentLevel+1}`
+  })
+}
+
+Game.replayAfterLost = function() {
+  button = $('.main-body .next-level')
+  button.val('PLAY AGAIN!')
+  button.on('click', function() {
+    window.location.href = '/game?lvl=1' 
+  })
+}
+
 Game.displayWinningMessage = function(message) {
   message.empty();
   message.css('background-color', 'light-green');
@@ -104,9 +121,11 @@ $(document).ready(function() {
         if (Game.result == 1) {
           /** If winning, then display the message */
           Game.displayWinningMessage($('.main-body .result-message'));
+          Game.showNextLevelButton();
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage($('.main-body .result-message'));
+          Game.replayAfterLost();
         } 
       }
     }
@@ -122,9 +141,11 @@ $(document).ready(function() {
         if (Game.result == 1) {
           /** If winning, then display the message */
           Game.displayWinningMessage($('.main-body .result-message'));
+          Game.showNextLevelButton();
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage($('.main-body .result-message'));
+          Game.replayAfterLost();
         }
       }
     }

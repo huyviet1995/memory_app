@@ -11,6 +11,7 @@
   </div>
 
   <div class = "game-section">
+    <input type = 'hidden' name='current-level', value = <%=@current_lvl%>>
     <input type = 'hidden' name='random-square-coordinates' value = <%="#{@random_square_coordinates.to_json}"%> >
     <div class = "main-board">
       <% for i in 0..3 do%>
