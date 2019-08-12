@@ -62,6 +62,7 @@ Game.checkIfPassCurrentLevel = function() {
   return false;
 }
 
+
 /** Win when given < pick <= given + 2  and match! */
 /** Lose when pick > given + 2 */
 Game.checkIfWinning = function() {
@@ -109,8 +110,8 @@ Game.displayLosingMessage = function(message) {
   message.show();
 }
 
-
 $(document).ready(function() {
+
   /* Get all flip square coordinates at reload */
   /** Hide winning message */
   $('.main-body .result-message').hide();
@@ -119,7 +120,16 @@ $(document).ready(function() {
   Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val());
   Game.flipSquareAtReload(Game.reloadedFlipSquares);
 
-  /** Hide button as the level starts */
+  /** Set height and width for each square at reload */
+  square = $('.main-body .front-square') 
+  noOfRows = $('input[name=no-of-rows]').val()
+  noOfCols = $('input[name=no-of-cols]').val()
+  squareWidth = 400/noOfRows; 
+  squareHeight = 400/noOfCols;
+  square.css('width', squareWidth)
+  square.css('height', squareHeight)
+  
+  /** Hide next level button as the level starts */
   $('.main-body .next-level').hide();
 
   /** Each square when clicked should should be flipped

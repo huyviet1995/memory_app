@@ -15,12 +15,14 @@
   </div>
 
   <div class = "game-section">
+    <input type = 'hidden' name='no-of-cols' value = <%=@no_of_col%>>
+    <input type = 'hidden' name='no-of-rows' value = <%=@no_of_row%>>
     <input type = 'hidden' name='current-level', value = <%=@current_lvl%>>
     <input type = 'hidden' name='random-square-coordinates' value = <%="#{@random_square_coordinates.to_json}"%> >
     <div class = "main-board">
-      <% for i in 0..3 do%>
+      <% for i in 0..@no_of_row-1 do%>
         <span class = "row">
-          <% for j in 0..3 do%>
+          <% for j in 0..@no_of_col-1 do%>
             <div class = "front-square">
               <div class = 'flip-square-inner' coordinate = <%="[#{i},#{j}]"%>>
                 <div class = 'flip-square-front'> </div>
