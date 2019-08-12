@@ -42,8 +42,8 @@ html, body {
 /* Next level button*/
 .main-body .next-level {
   text-align: center;
-  margin-top: 40px;
-  font-size: 40px;
+  margin-top: 20px;
+  font-size: 30px;
 }
 
 /* Level info section */
@@ -53,11 +53,11 @@ html, body {
 }
 
 .main-body .level-info-section .level {
-  font-size: 50px; 
+  font-size: 40px; 
 }
 
 .main-body .level-info-section .score {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 /* Result message*/
@@ -66,12 +66,11 @@ html, body {
   height: fit-content;
   background-color: lightgreen;
   position: relative;
-  font-size: 60px;
+  font-size: 40px;
   color: white; 
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
 
 /*= End of info=*/
 
@@ -100,9 +99,7 @@ html, body {
 }
 /*= End of game =*/
 
-
 /* End of ready message*/
-
 
 /* Style the front square*/
 .main-body .front-square {

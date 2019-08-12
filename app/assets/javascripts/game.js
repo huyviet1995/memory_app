@@ -1,7 +1,5 @@
 Game = function() {};
 Game.result = -1;
-
-/** Remove the splice  */
 Game.chosenSquareCoordinates = []
 Game.reloadedFlipSquares = [] 
 
@@ -82,9 +80,33 @@ Game.showNextLevelButton = function() {
   button.val('NEXT LEVEL');
   button.on('click', function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
-    window.location.href = `/game?lvl=${currentLevel+1}`
+    var path = `/game?lvl=${currentLevel+1}`;
+    Game.createFormToSendData({
+      path: path,
+      params: {
+        current_score: 100,
+      },
+      method: 'POST'
+    }) 
   })
   button.show();
+}
+
+Game.createFormToSendData = function({path, params, method = 'POST'} = {}) {
+  var form = $('<form></form>');
+
+  form.attr('method', method);
+  form.attr('action', path);
+
+  $.each(params, function(key, value) {
+    var field = $('<input></input>');
+    field.attr('type', 'hidden');
+    field.attr('name', key);
+    field.attr('value', value);
+    form.append(field)
+  })
+  $(document.body).append(form);
+  form.submit();
 }
 
 Game.replayAfterLost = function() {
@@ -124,8 +146,8 @@ $(document).ready(function() {
   square = $('.main-body .front-square') 
   noOfRows = $('input[name=no-of-rows]').val()
   noOfCols = $('input[name=no-of-cols]').val()
-  squareWidth = 550/noOfRows; 
-  squareHeight = 550/noOfCols;
+  squareWidth = 400/noOfRows; 
+  squareHeight = 400/noOfCols;
   square.css('width', squareWidth)
   square.css('height', squareHeight)
   

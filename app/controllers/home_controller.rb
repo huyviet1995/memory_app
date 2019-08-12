@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :current_lvl, only: [:game] 
+  skip_before_action :verify_authenticity_token, only: [:game, :index]
 
   def index
   end
@@ -56,7 +57,8 @@ class HomeController < ApplicationController
 
   def game_params
     @game_params ||= params.permit(
-      :lvl
+      :lvl,
+      :current_score,
     )
   end
 
@@ -91,7 +93,7 @@ class HomeController < ApplicationController
       when 9
         return [6,6,8]
       else
-        return [5,5,8]
+        return [6,6,15]
       end
   end 
 
