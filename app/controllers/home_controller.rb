@@ -67,11 +67,11 @@ class HomeController < ApplicationController
   # 5 => 4,4,5
   # 6 => 5,5,5
   # 7 => 5,5,6
-  # 8 => 5,5,7
-  # 9 => 5,5,8
+  # 8 => 6,6,7
+  # 9 => 6,6,8
   def set_game_difficulty 
-    current_lvl = game_params[:lvl].to_i
-    case current_lvl 
+    current_level = current_lvl 
+    case current_level 
       when 1
         return [2,2,1]
       when 2
@@ -87,9 +87,9 @@ class HomeController < ApplicationController
       when 7
         return [5,5,6]
       when 8
-        return [5,5,7]
+        return [6,6,7]
       when 9
-        return [5,5,8]
+        return [6,6,8]
       else
         return [5,5,8]
       end

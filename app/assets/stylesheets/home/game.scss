@@ -11,36 +11,18 @@ html, body {
   height: 85%;
   overflow: hidden;
   width: 100%;
+  display: inline-block;
+  text-align:center;
 }
 
-.main-body .game-section {
+/* info section*/
+.main-body .info-section {
   text-align: center;
-  width: 50%;
-  height: 100%;
-  float: right;
-  position: relative; 
-}
-
-.main-body .score-section {
-  text-align: center;
-  float: left;
-  height: 100%;
-  width: 50%;
+  height: 25%;
+  width: 100%;
   position: relative;
-  display: inline-block;
-}
-
-.main-body .main-board {
   margin: auto;
-  margin:20%;
   display: inline-block;
-  max-width: 500px;
-  max-height: 500px; 
-}
-
-.main-board .row {
-  width: inherit;
-  display: inline-block; 
 }
 
 /* Ready message*/
@@ -55,41 +37,72 @@ html, body {
 .main-body .ready-section .count {
   font-size: 60px;
 }
+/*= End of ready message =*/
 
-/* End of ready message*/
+/* Next level button*/
+.main-body .next-level {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 40px;
+}
 
-/* Winning message*/
+/* Level info section */
+.main-body .level-info-section {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: orange;
+}
+
+.main-body .level-info-section .level {
+  font-size: 50px; 
+}
+
+.main-body .level-info-section .score {
+  font-size: 40px;
+}
+
+/* Result message*/
 .main-body .result-message {
   width: 100%;
   height: fit-content;
   background-color: lightgreen;
-  margin-top: 30px;
-  position: absolute;
+  position: relative;
   font-size: 60px;
   color: white; 
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-/* Next level button*/
-.main-body .next-level{
-  width: fit-content;
-  height: 50px;
-  font-size: 30px; 
+
+/*= End of info=*/
+
+/*game section*/
+.main-body .game-section {
   text-align: center;
+  width: 50%;
+  height: fit-content; 
+  margin: auto; 
+  position: relative; 
+  padding: 20px;
 }
 
-/* Score section */
-.main-body .score-section .level p {
-  font-family: 'Courier New', Courier, monospace; 
-  font-size: 60px;
-  margin-top: 25%;
+.main-body .main-board {
+  margin: auto;
+  margin-top: 5px;
+  display: inline-block;
+  max-width: 600px;
+  max-height: 600px; 
 }
 
-.main-body .score-section .score p {
-  font-family: 'Courier New', Courier, monospace;   
-  font-size: 40px;
+.main-board .row {
+  width: inherit;
+  display: inline-block; 
+  margin: auto;
 }
+/*= End of game =*/
+
+
+/* End of ready message*/
+
 
 /* Style the front square*/
 .main-body .front-square {

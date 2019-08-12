@@ -124,8 +124,8 @@ $(document).ready(function() {
   square = $('.main-body .front-square') 
   noOfRows = $('input[name=no-of-rows]').val()
   noOfCols = $('input[name=no-of-cols]').val()
-  squareWidth = 400/noOfRows; 
-  squareHeight = 400/noOfCols;
+  squareWidth = 550/noOfRows; 
+  squareHeight = 550/noOfCols;
   square.css('width', squareWidth)
   square.css('height', squareHeight)
   

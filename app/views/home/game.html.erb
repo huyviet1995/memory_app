@@ -1,17 +1,15 @@
 <div class = "main-body">
-  <div class = "result-message"> </div>
-  <div class = 'ready-section'>
-    <div class = "message"> START IN ...</div>
-    <div class = "count"> 2 </div>
-  </div>
-  <div class = "score-section">
-    <div class = "level">
-      <p> LEVEL <%= @current_lvl%> </p>
+
+  <div class = "info-section">
+    <div class = "level-info-section">
+        <div class = "level">Level:<%=@current_lvl%> </div>  
+        <div class = "score">Score:100pts</div>
     </div>
-    <div class = "score">
-      <p> SCORE: 100 pts</p>
+    <div class = 'ready-section'>
+      <span class = "message"> START IN ...</span>
+      <span class = "count"> 2 </span>
     </div>
-    <input type = 'button' class = 'next-level btn btn-primary btn-large' value = 'START PLAYING'>
+    <div class = "result-message"> </div>
   </div>
 
   <div class = "game-section">
@@ -34,5 +32,6 @@
       <% end %>
     </div>
   </div>
+  <input type = 'button' class = 'next-level btn btn-primary btn-large' value = 'START PLAYING'>
 
 </div>
