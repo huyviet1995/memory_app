@@ -99,8 +99,7 @@ class HomeController < ApplicationController
   end 
 
   def set_score
-    score = game_params[:score].nil? ? 0 : game_params[:score].to_i
-    @current_score = score + 100
+    @current_score = game_params[:score].nil? ? 0 : game_params[:score].to_i
   end
 
 end

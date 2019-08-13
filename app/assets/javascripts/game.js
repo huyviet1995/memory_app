@@ -2,6 +2,7 @@ Game = function() {};
 Game.result = -1;
 Game.chosenSquareCoordinates = []
 Game.reloadedFlipSquares = [] 
+Game.missesCount = 0;
 
 Game.sleep = function(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -25,13 +26,15 @@ Game.flipSquareAtReload = async function(coordinates) {
   }
   readySection.hide(); 
   for (let it = 0; it < coordinates.length; it++) {
-    let coordinate = coordinates[it];
-    $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`).addClass('flip-square-at-reload');
+    var coordinate = coordinates[it];
+    var pickedSquare = $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`)
+    pickedSquare.addClass('flip-square-at-reload');
   }
   await Game.sleep(1000);
   for (let it = 0; it < coordinates.length; it++) {
     let coordinate = coordinates[it];
-    $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`).removeClass('flip-square-at-reload');
+    var pickedSquare = $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`);
+    pickedSquare.removeClass('flip-square-at-reload');
   }
 }
 
@@ -81,7 +84,7 @@ Game.showNextLevelButton = function() {
   button.on('click', function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
     var path = `/game?lvl=${currentLevel+1}`;
-    var currentScore = $('input[name=current-score]').val();
+    var currentScore = Game.calculateScore();
     Game.createFormToSendData({
       path: path,
       params: {
@@ -128,18 +131,34 @@ Game.displayWinningMessage = function(message) {
 
 Game.displayLosingMessage = function(message) {
   message.empty();
-  message.css('background-color', 'red')
+  message.css('background-color', 'red');
   message.append('YOU LOSE!');
   message.show();
 }
 
-Game.isPickCorrect = function(coordinate) {
+Game.calculateScore = function(missesCount) {
+  var penalty = missesCount*10;
+  var currentScore = parseInt($('input[name=current-score]').val());
+  var newScore = currentScore + 100 - penalty; 
+  return newScore;
+}
+
+Game.displayScore = function(score) {
+  var scoreContainer = $('.level-info-section .score') ;
+  scoreContainer.empty();
+  scoreContainer.append(`Score: ${score} pts`);
+  if (Game.missesCount > 0) {
+    scoreContainer.append(` (Misses: ${Game.missesCount})`);
+  }
+}
+
+Game.isPickMissed = function(coordinate) {
   var givenCoordinatesToString = JSON.stringify(Game.reloadedFlipSquares);
   var coordinateToString = JSON.stringify(coordinate);
   if (givenCoordinatesToString.includes(coordinateToString)) {
-    return true;
+    return false;
   }
-  return false;
+  return true;
 }
 
 $(document).ready(function() {
@@ -172,6 +191,11 @@ $(document).ready(function() {
       $(this).removeClass('flip-on-click');
       let pickedCoordinate = $(this).attr('coordinate');
       /** Remove the square coordinate */
+
+      if (Game.isPickMissed) {
+        Game.missesCount--;
+      }
+
       for (var it = 0; it < Game.chosenSquareCoordinates.length; it++) {
         if (JSON.stringify(Game.chosenSquareCoordinates[it]) == pickedCoordinate) {
           Game.chosenSquareCoordinates.splice(it,1);
@@ -185,6 +209,7 @@ $(document).ready(function() {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
           Game.showNextLevelButton();
+          Game.displayScore(Game.calculateScore(Game.missesCount));
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
@@ -196,8 +221,12 @@ $(document).ready(function() {
       /** Add the square coordinate */
       $(this).addClass('flip-on-click');
       let pickedCoordinate = JSON.parse($(this).attr('coordinate'));
-
       Game.chosenSquareCoordinates.push(pickedCoordinate);
+
+      if (Game.isPickMissed(pickedCoordinate)) {
+        Game.missesCount++;
+      }
+
       /** Start checking coordinate when two lengths match*/
       /** If already winning, then stop checking */
       if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result == -1) {
@@ -207,6 +236,7 @@ $(document).ready(function() {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
           Game.showNextLevelButton();
+          Game.displayScore(Game.calculateScore(Game.missesCount));
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
