@@ -136,7 +136,7 @@ Game.displayLosingMessage = function(message) {
   message.show();
 }
 
-Game.calculateScore = function(missesCount) {
+Game.calculateScore = function(missesCount = Game.missesCount) {
   var penalty = missesCount*10;
   var currentScore = parseInt($('input[name=current-score]').val());
   var newScore = currentScore + 100 - penalty; 
@@ -209,7 +209,7 @@ $(document).ready(function() {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
           Game.showNextLevelButton();
-          Game.displayScore(Game.calculateScore(Game.missesCount));
+          Game.displayScore(Game.calculateScore());
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
@@ -236,7 +236,7 @@ $(document).ready(function() {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
           Game.showNextLevelButton();
-          Game.displayScore(Game.calculateScore(Game.missesCount));
+          Game.displayScore(Game.calculateScore());
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
