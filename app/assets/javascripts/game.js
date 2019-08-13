@@ -196,10 +196,6 @@ $(document).ready(function() {
       /** Add the square coordinate */
       $(this).addClass('flip-on-click');
       let pickedCoordinate = JSON.parse($(this).attr('coordinate'));
-      /** Check if the pick is valid or not */
-      if (!Game.isPickCorrect(pickedCoordinate)) {
-        $(this).find('.flip-square-back').css('background-color', 'grey');
-      }
 
       Game.chosenSquareCoordinates.push(pickedCoordinate);
       /** Start checking coordinate when two lengths match*/
