@@ -1,16 +1,21 @@
 /* Footer */
 .footer {
-  background-color: grey;
-  height: 60px;
+  background-color: red;
   width: 100%; 
 }
 
 .footer .container p {
   text-align: center;
   color: white; 
-  padding: 3px;
-  margin: 0px;
-  font-size: 30px;
+  font-size: 25px;
+  padding-top:10px;
+  margin-bottom:10px;
+}
+
+.footer .my-info {
+  text-align: center;
+  color: white;
+  font-size: 25px;
 }
 
 /*== End of footer ==*/

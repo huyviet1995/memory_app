@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  my_info:
+    phone_number: 84906611895
+    email: vdang@gustavus.edu
+    address: Dist 2, Ho Chi Minh city 
