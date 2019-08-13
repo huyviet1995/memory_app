@@ -71,10 +71,12 @@ Game.checkIfWinning = function() {
   var pick  = Game.chosenSquareCoordinates.length;
   var given = Game.reloadedFlipSquares.length;
   if (pick >= given && pick <=given+2 && Game.checkIfPassCurrentLevel()) {
+    Game.showMissedSquares();
     return 1 
   }
   if (pick > given+2 || Game.missesCount > 3) {
-    return 0 
+    Game.showMissedSquares();
+    return 0
   }
   return -1;
 }
@@ -146,6 +148,18 @@ Game.calculateScore = function(missesCount = Game.missesCount) {
   var newScore = currentScore + 100 - penalty; 
   Game.score = newScore;
   return Game.score;
+}
+
+Game.showMissedSquares = function() {
+  var givenSquares = Game.reloadedFlipSquares; 
+  var pickedSquares = Game.chosenSquareCoordinates;
+  for (var i = 0; i < pickedSquares.length; i++) {
+    var pickedCoordinate = pickedSquares[i];
+    if (!JSON.stringify(givenSquares).includes(pickedCoordinate)) {
+      var missedSquare = $(`.flip-square-inner[coordinate='[${pickedCoordinate[0]},${pickedCoordinate[1]}]'`).find('.flip-square-back');
+      missedSquare.css('background-color', 'grey');
+    }
+  }
 }
 
 Game.displayScore = function(score) {
