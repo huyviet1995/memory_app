@@ -133,6 +133,15 @@ Game.displayLosingMessage = function(message) {
   message.show();
 }
 
+Game.isPickCorrect = function(coordinate) {
+  var givenCoordinatesToString = JSON.stringify(Game.reloadedFlipSquares);
+  var coordinateToString = JSON.stringify(coordinate);
+  if (givenCoordinatesToString.includes(coordinateToString)) {
+    return true;
+  }
+  return false;
+}
+
 $(document).ready(function() {
 
   /* Get all flip square coordinates at reload */
@@ -171,13 +180,14 @@ $(document).ready(function() {
       /* Start checking match coordinates if two lengths match */
       if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result == -1) {
         Game.result = Game.checkIfWinning();
+        var resultMessage = $('.main-body .result-message');
         if (Game.result == 1) {
           /** If winning, then display the message */
-          Game.displayWinningMessage($('.main-body .result-message'));
+          Game.displayWinningMessage(resultMessage);
           Game.showNextLevelButton();
         }
         else if (Game.result == 0) {
-          Game.displayLosingMessage($('.main-body .result-message'));
+          Game.displayLosingMessage(resultMessage);
           Game.replayAfterLost();
         } 
       }
@@ -186,21 +196,29 @@ $(document).ready(function() {
       /** Add the square coordinate */
       $(this).addClass('flip-on-click');
       let pickedCoordinate = JSON.parse($(this).attr('coordinate'));
+      /** Check if the pick is valid or not */
+      if (!Game.isPickCorrect(pickedCoordinate)) {
+        $(this).find('.flip-square-back').css('background-color', 'grey');
+      }
+
       Game.chosenSquareCoordinates.push(pickedCoordinate);
       /** Start checking coordinate when two lengths match*/
       /** If already winning, then stop checking */
       if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result == -1) {
         Game.result  = Game.checkIfWinning();
+        var resultMessage = $('.main-body .result-message');
         if (Game.result == 1) {
           /** If winning, then display the message */
-          Game.displayWinningMessage($('.main-body .result-message'));
+          Game.displayWinningMessage(resultMessage);
           Game.showNextLevelButton();
         }
         else if (Game.result == 0) {
-          Game.displayLosingMessage($('.main-body .result-message'));
+          Game.displayLosingMessage(resultMessage);
           Game.replayAfterLost();
         }
       }
     }
   })
+  /** End of flip square logic */
+
 })
