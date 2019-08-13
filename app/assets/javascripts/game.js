@@ -69,10 +69,10 @@ Game.checkIfPassCurrentLevel = function() {
 Game.checkIfWinning = function() {
   var pick  = Game.chosenSquareCoordinates.length;
   var given = Game.reloadedFlipSquares.length;
-  if (given <= pick && pick <= given+2 && Game.checkIfPassCurrentLevel()) {
+  if (given == pick && Game.checkIfPassCurrentLevel()) {
     return 1 
   }
-  if (pick > given+2) {
+  if (pick > given+2 || Game.missesCount > 3) {
     return 0 
   }
   return -1;
@@ -246,5 +246,4 @@ $(document).ready(function() {
     }
   })
   /** End of flip square logic */
-
 })
