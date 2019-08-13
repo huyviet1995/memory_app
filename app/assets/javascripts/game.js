@@ -3,6 +3,7 @@ Game.result = -1;
 Game.chosenSquareCoordinates = []
 Game.reloadedFlipSquares = [] 
 Game.missesCount = 0;
+Game.score = 0;
 
 Game.sleep = function(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -69,7 +70,7 @@ Game.checkIfPassCurrentLevel = function() {
 Game.checkIfWinning = function() {
   var pick  = Game.chosenSquareCoordinates.length;
   var given = Game.reloadedFlipSquares.length;
-  if (pick >= given && Game.checkIfPassCurrentLevel()) {
+  if (pick >= given && pick <=given+2 && Game.checkIfPassCurrentLevel()) {
     return 1 
   }
   if (pick > given+2 || Game.missesCount > 3) {
@@ -137,10 +138,14 @@ Game.displayLosingMessage = function(message) {
 }
 
 Game.calculateScore = function(missesCount = Game.missesCount) {
+  if (Game.score != 0) {
+    return Game.score;
+  }
   var penalty = missesCount*10;
   var currentScore = parseInt($('input[name=current-score]').val());
   var newScore = currentScore + 100 - penalty; 
-  return newScore;
+  Game.score = newScore;
+  return Game.score;
 }
 
 Game.displayScore = function(score) {
