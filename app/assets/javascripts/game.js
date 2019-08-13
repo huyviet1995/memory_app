@@ -69,7 +69,7 @@ Game.checkIfPassCurrentLevel = function() {
 Game.checkIfWinning = function() {
   var pick  = Game.chosenSquareCoordinates.length;
   var given = Game.reloadedFlipSquares.length;
-  if (given == pick && Game.checkIfPassCurrentLevel()) {
+  if (pick >= given && Game.checkIfPassCurrentLevel()) {
     return 1 
   }
   if (pick > given+2 || Game.missesCount > 3) {
@@ -144,7 +144,7 @@ Game.calculateScore = function(missesCount = Game.missesCount) {
 }
 
 Game.displayScore = function(score) {
-  var scoreContainer = $('.level-info-section .score') ;
+  var scoreContainer = $('.level-info-section .score');
   scoreContainer.empty();
   scoreContainer.append(`Score: ${score} pts`);
   if (Game.missesCount > 0) {
