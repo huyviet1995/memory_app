@@ -81,10 +81,11 @@ Game.showNextLevelButton = function() {
   button.on('click', function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
     var path = `/game?lvl=${currentLevel+1}`;
+    var currentScore = $('input[name=current-score]').val();
     Game.createFormToSendData({
       path: path,
       params: {
-        current_score: 100,
+        score: currentScore,
       },
       method: 'POST'
     }) 

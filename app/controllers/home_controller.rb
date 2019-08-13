@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :current_lvl, only: [:game] 
+  before_action :set_score, only: [:game]
   skip_before_action :verify_authenticity_token, only: [:game, :index]
 
   def index
@@ -58,7 +59,7 @@ class HomeController < ApplicationController
   def game_params
     @game_params ||= params.permit(
       :lvl,
-      :current_score,
+      :score,
     )
   end
 
@@ -97,5 +98,9 @@ class HomeController < ApplicationController
       end
   end 
 
+  def set_score
+    score = game_params[:score].nil? ? 0 : game_params[:score].to_i
+    @current_score = score + 100
+  end
 
 end
