@@ -82,9 +82,11 @@ Game.checkIfWinning = function() {
   return -1;
 }
 
-Game.showNextLevelButton = function() {
-  button = $('.main-body .next-level')
-  button.val('NEXT LEVEL');
+Game.displayNextLevelButton = function() {
+  button = $("<input type='button' value='NEXT LEVEL' class = 'btn btn-primary'></input>")
+  button.css({
+    'font-size': '30px'
+  })
   button.on('click', function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
     var path = `/game?lvl=${currentLevel+1}`;
@@ -97,6 +99,7 @@ Game.showNextLevelButton = function() {
       method: 'POST'
     }) 
   })
+  $('.button-section').append(button);
   button.show();
 }
 
@@ -149,11 +152,11 @@ Game.calculateScore = function(missesCount = Game.missesCount) {
 }
 
 Game.displayViewScoreButton = function() {
-  viewScoreButton = $("<input type='button' value='VIEW SCORE' class = 'btn btn-primary'></input>")
+  viewScoreButton = $("<input type='button' value='VIEW SCORE!' class = 'btn btn-primary'></input>")
   viewScoreButton.css({
-    'background-color': 'red',
     'text-align':'center',
-    'font-size':'30px'
+    'font-size':'30px',
+    'margin-right': '5px'
   })
   viewScoreButton.on('click', function() {
     finalScore = parseInt($('input[name=current-score]').val());
@@ -163,6 +166,21 @@ Game.displayViewScoreButton = function() {
   viewScoreButton.show();
 }
 
+Game.displayReplayButtonAfterLost = function() {
+  replayButton = $("<input type='button' value='PLAY AGAIN!' class='btn btn-primary'></input>")
+  replayButton.css({
+    'text-align': 'center',
+    'font-size': '30px',
+    'margin-left': '5px'
+  })
+  replayButton.on('click', function() {
+    finalScore = parseInt($('input[name=current-score]').val());
+    Game.storeScore({score: finalScore})
+    window.location.href = '/game?lvl=1'; 
+  })
+  $('.button-section').append(replayButton);
+  button.show();
+}
 
 Game.showMissedSquares = function() {
   var givenSquares = Game.reloadedFlipSquares; 
@@ -171,7 +189,7 @@ Game.showMissedSquares = function() {
     var pickedCoordinate = pickedSquares[i];
     if (!JSON.stringify(givenSquares).includes(pickedCoordinate)) {
       var missedSquare = $(`.flip-square-inner[coordinate='[${pickedCoordinate[0]},${pickedCoordinate[1]}]'`).find('.flip-square-back');
-      missedSquare.css('background-color', 'grey');
+      missedSquare.css('background-color', 'orange');
     }
   }
 }
@@ -243,13 +261,13 @@ $(document).ready(function() {
         if (Game.result == 1) {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
-          Game.showNextLevelButton();
+          Game.displayNextLevelButton();
           Game.displayScore(Game.calculateScore());
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
           Game.displayViewScoreButton();
-          Game.replayAfterLost();
+          Game.displayReplayButtonAfterLost();
         } 
       }
     }
@@ -271,13 +289,13 @@ $(document).ready(function() {
         if (Game.result == 1) {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
-          Game.showNextLevelButton();
+          Game.displayNextLevelButton();
           Game.displayScore(Game.calculateScore());
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
-          Game.replayAfterLost();
-          Game.displayViewScoreButton();
+          Game.displayViewScoreButton(); 
+          Game.displayReplayButtonAfterLost();
         }
       }
     }
