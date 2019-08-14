@@ -3,6 +3,7 @@ Game.result = -1;
 Game.chosenSquareCoordinates = []
 Game.reloadedFlipSquares = [] 
 Game.missesCount = 0;
+Game.currentLevel = 1;
 Game.score = 0;
 
 Game.sleep = function(ms) {
@@ -99,6 +100,19 @@ Game.showNextLevelButton = function() {
   button.show();
 }
 
+Game.storeScore = function({score = Game.score, lvl = Game.currentLevel, missesCount = Game.missesCount} = {}) {
+  debugger;
+  Game.createFormToSendData({
+    path: '/play',
+    params: {
+      score: score,
+      lvl: lvl,
+      missesCount: missesCount 
+    },
+    method: 'POST'
+  })
+}
+
 Game.createFormToSendData = function({path, params, method = 'POST'} = {}) {
   var form = $('<form></form>');
 
@@ -118,7 +132,7 @@ Game.createFormToSendData = function({path, params, method = 'POST'} = {}) {
 
 Game.replayAfterLost = function() {
   button = $('.main-body .next-level')
-  button.val('PLAY AGAIN!')
+  button.val('PLAY AGAIN!');
   button.on('click', function() {
     window.location.href = '/game?lvl=1' 
   })
@@ -185,6 +199,8 @@ $(document).ready(function() {
   /* Get all flip square coordinates at reload */
   /** Hide winning message */
   $('.main-body .result-message').hide();
+
+  Game.currentLevel = parseInt($('input[name=current-level]').val());
 
   /** Start flipping square at reload */
   Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val());
