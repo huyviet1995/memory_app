@@ -148,6 +148,22 @@ Game.calculateScore = function(missesCount = Game.missesCount) {
   return Game.score;
 }
 
+Game.displayViewScoreButton = function() {
+  viewScoreButton = $("<input type='button' value='VIEW SCORE' class = 'btn btn-primary'></input>")
+  viewScoreButton.css({
+    'background-color': 'red',
+    'text-align':'center',
+    'font-size':'30px'
+  })
+  viewScoreButton.on('click', function() {
+    finalScore = parseInt($('input[name=current-score]').val());
+    Game.storeScore({score: finalScore});
+  })
+  $('.button-section').append(viewScoreButton);
+  viewScoreButton.show();
+}
+
+
 Game.showMissedSquares = function() {
   var givenSquares = Game.reloadedFlipSquares; 
   var pickedSquares = Game.chosenSquareCoordinates;
@@ -232,6 +248,7 @@ $(document).ready(function() {
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
+          Game.displayViewScoreButton();
           Game.replayAfterLost();
         } 
       }
@@ -260,6 +277,7 @@ $(document).ready(function() {
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
           Game.replayAfterLost();
+          Game.displayViewScoreButton();
         }
       }
     }
