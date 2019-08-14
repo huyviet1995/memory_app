@@ -89,7 +89,7 @@ Game.showNextLevelButton = function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
     var path = `/game?lvl=${currentLevel+1}`;
     var currentScore = Game.calculateScore();
-    Game.createFormToSendData({
+    GameUtils.createAndSendFormWithOptions({
       path: path,
       params: {
         score: currentScore,
@@ -101,40 +101,24 @@ Game.showNextLevelButton = function() {
 }
 
 Game.storeScore = function({score = Game.score, lvl = Game.currentLevel, missesCount = Game.missesCount} = {}) {
-  debugger;
-  Game.createFormToSendData({
+  GameUtils.ajaxDataWithOptions({
     path: '/play',
+    method: 'POST',
     params: {
       score: score,
-      lvl: lvl,
-      missesCount: missesCount 
+      level: lvl,
+      missesCount: missesCount, 
     },
-    method: 'POST'
   })
-}
-
-Game.createFormToSendData = function({path, params, method = 'POST'} = {}) {
-  var form = $('<form></form>');
-
-  form.attr('method', method);
-  form.attr('action', path);
-
-  $.each(params, function(key, value) {
-    var field = $('<input></input>');
-    field.attr('type', 'hidden');
-    field.attr('name', key);
-    field.attr('value', value);
-    form.append(field)
-  })
-  $(document.body).append(form);
-  form.submit();
 }
 
 Game.replayAfterLost = function() {
   button = $('.main-body .next-level')
   button.val('PLAY AGAIN!');
+  finalScore = parseInt($('input[name=current-score]').val());
   button.on('click', function() {
-    window.location.href = '/game?lvl=1' 
+    Game.storeScore({score: finalScore});
+    window.location.href = '/game?lvl=1'; 
   })
   button.show();
 }
