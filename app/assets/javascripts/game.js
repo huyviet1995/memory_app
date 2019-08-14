@@ -37,6 +37,7 @@ Game.flipSquareAtReload = async function(coordinates) {
     let coordinate = coordinates[it];
     var pickedSquare = $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`);
     pickedSquare.removeClass('flip-square-at-reload');
+    $('.front-square .flip-square-inner').css('pointer-events','');
   }
 }
 
@@ -219,6 +220,9 @@ $(document).ready(function() {
   $('.main-body .result-message').hide();
 
   Game.currentLevel = parseInt($('input[name=current-level]').val());
+
+  /** Cannot click any square at the start of the game */
+  $('.front-square .flip-square-inner').css('pointer-events', 'none');
 
   /** Start flipping square at reload */
   Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val());
