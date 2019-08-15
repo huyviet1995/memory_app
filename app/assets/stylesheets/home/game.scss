@@ -129,6 +129,7 @@ html, body {
   height: 100%;
   backface-visibility: hidden;
   border: 1px solid black;
+  border-radius: 8px; 
 }
 
 /* Style the front side (fallback if image is missing) */
