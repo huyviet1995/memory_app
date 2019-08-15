@@ -111,17 +111,6 @@ Game.storeScore = function({score = Game.score, lvl = Game.currentLevel, missesC
   })
 }
 
-Game.replayAfterLost = function() {
-  button = $('.main-body .next-level')
-  button.val('PLAY AGAIN!');
-  finalScore = parseInt($('input[name=current-score]').val());
-  button.on('click', function() {
-    Game.storeScore({score: finalScore});
-    window.location.href = '/game?lvl=1'; 
-  })
-  button.show();
-}
-
 Game.displayWinningMessage = function(message) {
   message.empty();
   message.css('background-color', 'light-green');
@@ -160,22 +149,6 @@ Game.displayViewScoreButton = function() {
   })
   $('.button-section').append(viewScoreButton);
   viewScoreButton.show();
-}
-
-Game.displayReplayButtonAfterLost = function() {
-  replayButton = $("<input type='button' value='PLAY AGAIN!' class='btn btn-primary'></input>")
-  replayButton.css({
-    'text-align': 'center',
-    'font-size': '30px',
-    'margin-left': '5px'
-  })
-  replayButton.on('click', function() {
-    finalScore = parseInt($('input[name=current-score]').val());
-    Game.storeScore({score: finalScore})
-    window.location.href = '/game?lvl=1'; 
-  })
-  $('.button-section').append(replayButton);
-  button.show();
 }
 
 Game.showMissedSquares = function() {
@@ -299,7 +272,6 @@ $(document).ready(function() {
           Game.livesCount--; 
           if (Game.livesCount==0) {
             Game.displayViewScoreButton();
-            Game.displayReplayButtonAfterLost();
           }
           else {
             Game.showRepeatLevelButton(); 
@@ -332,7 +304,6 @@ $(document).ready(function() {
           Game.livesCount--;
           if (Game.livesCount== 0) {
             Game.displayViewScoreButton(); 
-            Game.displayReplayButtonAfterLost();
           }
           else {
             Game.showRepeatLevelButton();
