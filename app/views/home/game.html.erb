@@ -4,6 +4,7 @@
     <div class = "level-info-section">
         <div class = "level">Level: <%=@current_lvl%> </div>  
         <div class = "score">Score: <%=@current_score%> pts</div>
+        <div class = "lives-count"> Lives: 3 </div>
     </div>
     <div class = 'ready-section'>
       <span class = "count"></span>
@@ -16,6 +17,7 @@
     <input type = 'hidden' name='no-of-rows' value = <%=@no_of_row%>>
     <input type = 'hidden' name='current-level' value = <%=@current_lvl%>>
     <input type = 'hidden' name='current-score' value = <%=@current_score%>>
+    <input type = 'hidden' name='lives-count' value = '3'>
     <input type = 'hidden' name='random-square-coordinates' value = <%="#{@random_square_coordinates.to_json}"%> >
     <div class = "main-board">
       <% for i in 0..@no_of_row-1 do%>

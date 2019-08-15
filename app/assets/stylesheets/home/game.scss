@@ -35,7 +35,7 @@ html, body {
 }
 
 .main-body .ready-section .count {
-  font-size: 60px;
+  font-size: 40px;
 }
 /*= End of ready message =*/
 
@@ -46,11 +46,11 @@ html, body {
 }
 
 .main-body .level-info-section .level {
-  font-size: 40px; 
+  font-size: 30px;
 }
 
-.main-body .level-info-section .score {
-  font-size: 30px;
+.main-body .level-info-section .score, .lives-count {
+  font-size: 25px;
 }
 
 /* Result message*/

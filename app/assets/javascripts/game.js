@@ -5,6 +5,7 @@ Game.reloadedFlipSquares = []
 Game.missesCount = 0;
 Game.currentLevel = 1;
 Game.score = 0;
+Game.livesCount = 0;
 
 Game.sleep = function(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -212,6 +213,8 @@ $(document).ready(function() {
   $('.main-body .result-message').hide();
 
   Game.currentLevel = parseInt($('input[name=current-level]').val());
+
+  Game.livesCount = parseInt(($('input[name=lives-count]')).val());
 
   /** Cannot click any square at the start of the game */
   $('.front-square .flip-square-inner').css('pointer-events', 'none');
