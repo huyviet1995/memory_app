@@ -79,7 +79,8 @@ Game.checkIfWinning = function() {
 Game.displayNextLevelButton = function() {
   button = $("<input type='button' value='NEXT LEVEL' class = 'btn btn-primary'></input>")
   button.css({
-    'font-size': '30px'
+    'font-size': '30px',
+    'border-radius': '5px',
   })
   button.on('click', function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
@@ -89,6 +90,7 @@ Game.displayNextLevelButton = function() {
       path: path,
       params: {
         score: currentScore,
+        lives_count: Game.livesCount, 
       },
       method: 'POST'
     }) 
@@ -206,6 +208,34 @@ Game.isPickMissed = function(coordinate) {
   return true;
 }
 
+Game.showRepeatLevelButton = async function() {
+  var repeatLevelButton = $(/*html */`<input type='button' class='btn btn-primary' value='PLAY AGAIN!'></input>`)
+  var currentLevel = Game.currentLevel;
+  repeatLevelButton.css({
+    'font-size': '30px',
+    'border-radius': '5px',
+  })
+  repeatLevelButton.on('click', function() {
+    GameUtils.createAndSendFormWithOptions({
+      path: `/game?lvl=${currentLevel}`,
+      params: { 
+        score: Game.score,
+        lives_count: Game.livesCount,
+      },
+      method: 'POST'
+    })
+  })
+  $('.button-section').append(repeatLevelButton);
+}
+
+/** When livesCount == 0, then display button to the first level
+ * When 0 < livesCount < 3, then display the level all over again! 
+ */
+Game.updateLivesCountUI = function(livesCount) {
+  $('.lives-count').empty();
+  $('.lives-count').append(/*html*/`Lives: ${livesCount} `)
+}
+
 $(document).ready(function() {
 
   /* Get all flip square coordinates at reload */
@@ -265,9 +295,16 @@ $(document).ready(function() {
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
-          Game.displayViewScoreButton();
-          Game.displayReplayButtonAfterLost();
-        } 
+          Game.updateLivesCountUI(Game.livesCount-1);
+          Game.livesCount--; 
+          if (Game.livesCount==0) {
+            Game.displayViewScoreButton();
+            Game.displayReplayButtonAfterLost();
+          }
+          else {
+            Game.showRepeatLevelButton(); 
+          }
+        }
       }
     }
     else {
@@ -275,11 +312,9 @@ $(document).ready(function() {
       $(this).addClass('flip-on-click');
       let pickedCoordinate = JSON.parse($(this).attr('coordinate'));
       Game.chosenSquareCoordinates.push(pickedCoordinate);
-
       if (Game.isPickMissed(pickedCoordinate)) {
         Game.missesCount++;
       }
-
       /** Start checking coordinate when two lengths match*/
       /** If already winning, then stop checking */
       if (Game.chosenSquareCoordinates.length >= Game.reloadedFlipSquares.length && Game.result == -1) {
@@ -293,8 +328,15 @@ $(document).ready(function() {
         }
         else if (Game.result == 0) {
           Game.displayLosingMessage(resultMessage);
-          Game.displayViewScoreButton(); 
-          Game.displayReplayButtonAfterLost();
+          Game.updateLivesCountUI(Game.livesCount-1);
+          Game.livesCount--;
+          if (Game.livesCount== 0) {
+            Game.displayViewScoreButton(); 
+            Game.displayReplayButtonAfterLost();
+          }
+          else {
+            Game.showRepeatLevelButton();
+          }
         }
       }
     }
