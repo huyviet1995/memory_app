@@ -11,28 +11,20 @@ Game.sleep = function(ms) {
 }
 
 Game.flipSquareAtReload = async function(coordinates) {
-  var count = 2;
   readySection = $('.ready-section');
   readyCount = $('.ready-section .count');
-  for (var i = 0; i < 3; i++) {
-    count = count - 1;
-    await Game.sleep(1000);
-    readyCount.empty();
-    if (count == 0) {
-      readyCount.css('color', 'red');
-      readyCount.append('PLAY!'); 
-    }
-    else {
-      readyCount.append(count);
-    }
-  }
-  readySection.hide(); 
+  readyCount.append('READY?');
+  await Game.sleep(1000);
+  readyCount.empty();
+  readyCount.append('START!');
+  readyCount.css('color', 'red');
   for (let it = 0; it < coordinates.length; it++) {
     var coordinate = coordinates[it];
     var pickedSquare = $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`)
     pickedSquare.addClass('flip-square-at-reload');
   }
   await Game.sleep(1000);
+  readySection.hide(); 
   for (let it = 0; it < coordinates.length; it++) {
     let coordinate = coordinates[it];
     var pickedSquare = $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`);
