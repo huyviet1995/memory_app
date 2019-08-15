@@ -76,7 +76,7 @@ Game.checkIfWinning = function() {
   return -1;
 }
 
-Game.displayNextLevelButton = function() {
+Game.showNextLevelButton = function() {
   button = $("<input type='button' value='NEXT LEVEL' class = 'btn btn-primary'></input>")
   button.css({
     'font-size': '30px',
@@ -136,7 +136,7 @@ Game.calculateScore = function(missesCount = Game.missesCount) {
   return Game.score;
 }
 
-Game.displayViewScoreButton = function() {
+Game.showViewScoreButton = function() {
   viewScoreButton = $("<input type='button' value='VIEW SCORE!' class = 'btn btn-primary'></input>")
   viewScoreButton.css({
     'text-align':'center',
@@ -181,7 +181,7 @@ Game.isPickMissed = function(coordinate) {
   return true;
 }
 
-Game.showRepeatLevelButton = async function() {
+Game.showRepeatLevelButton = function() {
   var repeatLevelButton = $(/*html */`<input type='button' class='btn btn-primary' value='PLAY AGAIN!'></input>`)
   var currentLevel = Game.currentLevel;
   repeatLevelButton.css({
@@ -199,6 +199,19 @@ Game.showRepeatLevelButton = async function() {
     })
   })
   $('.button-section').append(repeatLevelButton);
+}
+
+Game.showMainMenuButton = function() {
+  var mainMenuButton = $(/*html*/ `<input type = 'button' class='btn btn-primary' value = 'MAIN MENU!'"></input>`);
+  mainMenuButton.css({
+    'font-size': '30px',
+    'border-radius':'5px'
+  })
+  mainMenuButton.on('click', function() {
+    Game.storeScore();
+    window.location.href = '/';
+  })
+  $('.button-section').append(mainMenuButton);
 }
 
 /** When livesCount == 0, then display button to the first level
@@ -263,7 +276,7 @@ $(document).ready(function() {
         if (Game.result == 1) {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
-          Game.displayNextLevelButton();
+          Game.showNextLevelButton();
           Game.displayScore(Game.calculateScore());
         }
         else if (Game.result == 0) {
@@ -271,7 +284,8 @@ $(document).ready(function() {
           Game.updateLivesCountUI(Game.livesCount-1);
           Game.livesCount--; 
           if (Game.livesCount==0) {
-            Game.displayViewScoreButton();
+            Game.showViewScoreButton();
+            Game.showMainMenuButton();
           }
           else {
             Game.showRepeatLevelButton(); 
@@ -295,7 +309,7 @@ $(document).ready(function() {
         if (Game.result == 1) {
           /** If winning, then display the message */
           Game.displayWinningMessage(resultMessage);
-          Game.displayNextLevelButton();
+          Game.showNextLevelButton();
           Game.displayScore(Game.calculateScore());
         }
         else if (Game.result == 0) {
@@ -303,7 +317,8 @@ $(document).ready(function() {
           Game.updateLivesCountUI(Game.livesCount-1);
           Game.livesCount--;
           if (Game.livesCount== 0) {
-            Game.displayViewScoreButton(); 
+            Game.showViewScoreButton(); 
+            Game.showMainMenuButton();
           }
           else {
             Game.showRepeatLevelButton();
