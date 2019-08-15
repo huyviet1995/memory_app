@@ -230,7 +230,10 @@ $(document).ready(function() {
   $('.front-square .flip-square-inner').css('pointer-events', 'none');
 
   /** Start flipping square at reload */
-  Game.reloadedFlipSquares = JSON.parse($('input[name=random-square-coordinates]').val());
+  var reloadedFlipSquaresAsString = $('input[name=random-square-coordinates]').val();
+  if (reloadedFlipSquaresAsString) {
+    Game.reloadedFlipSquares = JSON.parse(reloadedFlipSquaresAsString);
+  }
   Game.flipSquareAtReload(Game.reloadedFlipSquares);
 
   /** Set height and width for each square at reload */
