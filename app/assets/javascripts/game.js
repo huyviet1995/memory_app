@@ -85,11 +85,10 @@ Game.showNextLevelButton = function() {
   button.on('click', function() {
     var currentLevel = parseInt($("input[name=current-level]").val());
     var path = `/game?lvl=${currentLevel+1}`;
-    var currentScore = Game.calculateScore();
     GameUtils.createAndSendFormWithOptions({
       path: path,
       params: {
-        score: currentScore,
+        score: Game.calculateScore(),
         lives_count: Game.livesCount, 
       },
       method: 'POST'
@@ -126,14 +125,9 @@ Game.displayLosingMessage = function(message) {
 }
 
 Game.calculateScore = function(missesCount = Game.missesCount) {
-  if (Game.score != 0) {
-    return Game.score;
-  }
   var penalty = missesCount*10;
-  var currentScore = parseInt($('input[name=current-score]').val());
-  var newScore = currentScore + 100 - penalty; 
-  Game.score = newScore;
-  return Game.score;
+  var newScore = Game.score + 100 - penalty; 
+  return newScore;
 }
 
 Game.showViewScoreButton = function() {
@@ -229,8 +223,8 @@ $(document).ready(function() {
   $('.main-body .result-message').hide();
 
   Game.currentLevel = parseInt($('input[name=current-level]').val());
-
-  Game.livesCount = parseInt(($('input[name=lives-count]')).val());
+  Game.livesCount = parseInt($('input[name=lives-count]').val());
+  Game.score = parseInt($('input[name=current-score]').val());
 
   /** Cannot click any square at the start of the game */
   $('.front-square .flip-square-inner').css('pointer-events', 'none');
@@ -254,6 +248,7 @@ $(document).ready(function() {
   /** Each square when clicked should should be flipped
    * Store the squares coordinates 
    */
+
   $('.front-square .flip-square-inner').on('click', function() {
     if ($(this).hasClass('flip-on-click')) {
       $(this).removeClass('flip-on-click');
