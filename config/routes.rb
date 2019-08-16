@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   get '/', to: 'home#index', as: :main
   get '/game', to: 'home#game', as: :game
   post '/game', to: 'home#game'
-  get '/scores', to: 'home#scores', as: :scores
   get '/tutorial', to: 'home#tutorial', as: :tutorial
   get '/about', to: 'home#about', as: :about
+
+  get '/scores', to: 'scores#index', as: :scores
 
   post '/play', to: 'plays#create', as: :create_play
 end
