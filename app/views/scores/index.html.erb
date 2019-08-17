@@ -12,23 +12,24 @@
 
   <div class = "comment-section">
     <div class = 'title'>TELL US WHAT YOU THINK?</div>
-    <%= form_with(url: '/play', method: :post) do %>
+    <%= form_with(url: '/play', method: :post) do |form| %>
       <div class = 'container'>
         <div class = 'row form-group'>
-          <%= label_tag :email, 'Email', class: 'col-sm-2'%>
-          <%= text_field_tag :email, '', placeholder: 'example@gmail.com', class: 'col-sm-5' %>
+          <%= form.label :email, 'Email', class: 'col-sm-2'%>
+          <%= form.text_field :email, placeholder: 'example@gmail.com', class: 'col-sm-5' %>
         </div>
 
         <div class = 'row form-group'>
-          <%= label_tag :comment, 'Comment', class: 'col-sm-2'%>
-          <%= text_area_tag :comment, '', placeholder:'This game is so cool!!!' ,class: 'col-sm-5' %>
+          <%= form.label :comment, 'Comment', class: 'col-sm-2'%>
+          <%= form.text_area :comment, placeholder:'Cool!!!' ,class: 'col-sm-5' %>
         </div>
       </div>
-    <% end %>
-  </div>
 
-  <div class = "buttons-section">
-    <%= link_to 'MAIN MENU', '/', class: 'btn btn-primary' %>
+      <div class = 'buttons'>
+        <%= form.submit 'SUBMIT', class: 'btn btn-primary'%>
+        <%= link_to 'MAIN MENU', '/', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
 
 </div>
