@@ -1,5 +1,4 @@
 .main-scores-body {
-  height: 85%;
 }
 
 .main-scores-body .score-info-section {
@@ -22,6 +21,24 @@
   width: 80% !important;
 }
 
+/* Button section */
+.main-scores-body .buttons-section {
+  text-align: center;
+}
+
+.main-scores-body .buttons-section .btn {
+  font-size: 30px !important;
+  margin: 10px;
+}
+
+/* End of button*/
+
+/* Comment section */
 .comment-section {
   font-size: 30px;
+  margin: 10px;
+  color: red;
+  padding: 10px; 
 }
+
+/**/
