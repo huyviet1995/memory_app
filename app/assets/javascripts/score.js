@@ -1,72 +1,33 @@
 Score = function() {}
 
-Score.buildGraphBackgroundColor = function(score) {
-    var resulting_array = [
-        'orange',
-        'orange',
-        'orange',
-        'orange',
-        'orange',
-        'orange',
-        'orange',
-        'orange',
-        'orange'
-    ] 
-    if (score >= 900) {
-        resulting_array[9] = 'red'
+Score.dataSize = 0;
+
+Score.buildGraphBackgroundColor = function({size = Score.dataSize, score} = {}) {
+    var backgroundColors = new Array(size).fill('orange');
+    for (let i = 0; i < size; i++) {
+        if (score >= i*100 && score <= i*100 + 99) {
+            backgroundColors[i] = 'red'
+            break;
+        }
     }
-    else if (score >= 800)  {
-        resulting_array[8] = 'red'
-    }
-    else if (score >= 700) {
-        resulting_array[7] = 'red'
-    }
-    else if (score >= 600) {
-        resulting_array[6] = 'red'
-    }
-    else if (score >= 500) {
-        resulting_array[5] = 'red'
-    }
-    else if (score >= 400) {
-        resulting_array[4] = 'red'
-    }
-    else if (score >= 300) {
-        resulting_array[3] = 'red'
-    }
-    else if (score >= 200) {
-        resulting_array[2] = 'red'
-    }
-    else if (score >= 100) {
-        resulting_array[1] = 'red'
-    }
-    else if (score >= 0) {
-        resulting_array[0] = 'red'
-    }
-    return resulting_array; 
+    return backgroundColors; 
 }
 
-Score.buildGraphLabel = function() {
-    var graphLabel = [
-        '0-99',
-        '100-199',
-        '200-299',
-        '300-399',
-        '400-499',
-        '500-599',
-        '600-699',
-        '700-799',
-        '800-899',
-        '900-999'
-    ]
-    return graphLabel;
+Score.buildGraphLabel = function({size = Score.dataSize} = {}) {
+    var graphLabels = new Array(size).fill('');
+    for (let i = 0; i < graphLabels.length; i++) {
+        graphLabels[i] = `${i*100} - ${i*100+99}`;
+    }
+    return graphLabels;
 }
 
 $(document).ready(function() {
   var ctx = document.getElementById('myChart').getContext('2d');
-   var finalScore = $("input[name=final-score]").val();
+  var finalScore = $("input[name=final-score]").val();
   var scores_info_string = $("input[name='score-graph-info']").val();
   if (scores_info_string) {
     scores_info_arr =  JSON.parse(scores_info_string);
+    Score.dataSize = scores_info_arr.length; 
   }
   var myChart = new Chart(ctx, {
       type: 'bar',
@@ -75,7 +36,7 @@ $(document).ready(function() {
           datasets: [{
               label: "Score distribution",
               data: scores_info_arr,
-              backgroundColor: Score.buildGraphBackgroundColor(finalScore),
+              backgroundColor: Score.buildGraphBackgroundColor({score: finalScore}),
               borderColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
