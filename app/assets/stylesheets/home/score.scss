@@ -34,11 +34,20 @@
 /* End of button*/
 
 /* Comment section */
-.comment-section {
+.comment-section .title {
+  font-weight: 500;
   font-size: 30px;
   margin: 10px;
-  color: red;
+  color: white;
   padding: 10px; 
+  background-color: orange; 
+}
+
+.comment-section .row {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
 }
 
 /**/
