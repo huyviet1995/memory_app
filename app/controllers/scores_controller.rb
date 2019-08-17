@@ -1,10 +1,21 @@
 class ScoresController < ApplicationController
   before_action :calculate_score_percentages, only: [:index]
+  before_action :get_score, only: [:index] 
+  before_action :get_level, only: [:index]
+  skip_before_action :verify_authenticity_token
 
   def index
   end 
 
   private
+
+  def get_score 
+    @score ||= score_params[:score] 
+  end
+
+  def get_level 
+    @level ||= score_params[:level]
+  end
 
   def get_scores_arr
     @scores ||= Play.all.pluck(:score).sort();
@@ -43,17 +54,17 @@ class ScoresController < ApplicationController
       sum = sum + score_count 
     end
 
-    score_percentage = Array.new(10) {0}
+    @score_percentage = Array.new(10) {0}
     total_sum = 0 
     score_counts_arr.each_with_index do |score_count, idx|
       if idx == 9
-        score_percentage[9] = 100 - total_sum 
+        @score_percentage[9] = 100 - total_sum 
       else
-        score_percentage[idx] = (score_count*100)/sum
-        total_sum = total_sum + score_percentage[idx]  
+        @score_percentage[idx] = (score_count*100)/sum
+        total_sum = total_sum + @score_percentage[idx]  
       end
     end
-    score_percentage
+    @score_percentage
   end
 
   # Calculate score percentage 
@@ -61,7 +72,7 @@ class ScoresController < ApplicationController
   def score_params 
     params.permit(
       :score,
-      :lvl,
+      :level,
       :missesCount,
     )
   end

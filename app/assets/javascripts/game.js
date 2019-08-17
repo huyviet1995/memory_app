@@ -140,6 +140,14 @@ Game.showViewScoreButton = function() {
   viewScoreButton.on('click', function() {
     finalScore = parseInt($('input[name=current-score]').val());
     Game.storeScore({score: finalScore});
+    GameUtils.createAndSendFormWithOptions({
+      path: '/scores',
+      params: {
+        level: Game.currentLevel, 
+        score: Game.score,
+      },
+      method: 'POST'
+    })
   })
   $('.button-section').append(viewScoreButton);
   viewScoreButton.show();

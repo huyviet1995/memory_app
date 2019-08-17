@@ -1,10 +1,12 @@
 <div class = "main-scores-body">
   <div class = "score-info-section">
-    <div class = "score"> SCORE: 100pts</div>
-    <div class = "level"> LEVEL: 9</div>
+    <div class = "score"> SCORE: <%=@score%></div>
+    <div class = "level"> LEVEL: <%=@level%></div>
   </div>
 
   <div class = "graph-section">
+    <input type = 'hidden' name = 'final-score' value=<%=@score%>>
+    <input type = 'hidden' name = 'score-graph-info' value=<%=@score_percentage.to_json %>>
     <canvas id="myChart"></canvas>
   </div>
 
