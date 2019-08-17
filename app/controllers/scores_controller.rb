@@ -18,7 +18,7 @@ class ScoresController < ApplicationController
   end
 
   def get_scores_arr
-    @scores ||= Play.all.pluck(:score).sort();
+    @scores ||= Play.all.pluck(:score).compact.sort();
   end
 
   def calculate_score_percentages
