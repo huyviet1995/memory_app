@@ -30,3 +30,7 @@ GameUtils.ajaxDataWithOptions = function({path, params, method} = {}) {
     }
   })
 }
+
+GameUtils.sleep = function(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

@@ -21,32 +21,36 @@ Score.buildGraphLabel = function({size = Score.dataSize} = {}) {
     return graphLabels;
 }
 
-Score.registerAjaxReturn = function(container) {
+Score.showMessage = async function({container, message, backgroundColor='#4bb543'} = {}) {
+    $(container).empty();
+    $(container).append(message);
+    $(container).css({
+        'font-size': '30px',
+        'background-color': backgroundColor,
+        'font-weight': '500',
+        'color': 'white',
+        'text-align':'center'
+    })
+    await GameUtils.sleep(2000);
+    $(container).empty();
+}
+
+Score.registerAjaxReturn = async function(container) {
   /** Handle ajax from here*/
   document.body.addEventListener('ajax:success', function(event) {
-    $(container).empty();
     [data,status,xhr] = event.detail;
-    if (status == "OK") {
-        $(container).append(xhr.response);
-        $(container).css({
-            'font-size': '30px',
-            'background-color':'#4bb543',
-            'font-weight': '500',
-            'color': 'white',
-            'text-align':'center'
-        })
-    }
+    Score.showMessage({
+        container: '#ajax-return',
+        message: xhr.response, 
+    })
   })
   document.body.addEventListener('ajax:error', function(event) {
     $(container).empty();
     [data,status,xhr] = event.detail;
-    $(container).append(xhr.response);
-    $(container).css({
-        'font-size': '30px',
-        'background-color':'#4bb543',
-        'color': 'white',
-        'font-weight': '500',
-        'text-align': 'center'
+    Score.showMessage({
+        container: '#ajax-return',
+        message: xhr.response,
+        backgroundColor: 'red' 
     })
   })
 }

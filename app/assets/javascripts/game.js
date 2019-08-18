@@ -7,15 +7,11 @@ Game.currentLevel = 1;
 Game.score = 0;
 Game.livesCount = 0;
 
-Game.sleep = function(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 Game.flipSquareAtReload = async function(coordinates) {
   readySection = $('.ready-section');
   readyCount = $('.ready-section .count');
   readyCount.append('READY?');
-  await Game.sleep(1000);
+  await GameUtils.sleep(1000);
   readyCount.empty();
   readyCount.append('START!');
   readyCount.css('color', 'red');
@@ -24,7 +20,7 @@ Game.flipSquareAtReload = async function(coordinates) {
     var pickedSquare = $(`.front-square .flip-square-inner[coordinate='[${coordinate[0]},${coordinate[1]}]']`)
     pickedSquare.addClass('flip-square-at-reload');
   }
-  await Game.sleep(1000);
+  await GameUtils.sleep(1000);
   readySection.hide(); 
   for (let it = 0; it < coordinates.length; it++) {
     let coordinate = coordinates[it];
