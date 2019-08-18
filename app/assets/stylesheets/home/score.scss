@@ -18,7 +18,7 @@
 .graph-section #myChart {
   margin:auto;
   height: 80% !important; 
-  width: 60% !important;
+  width: 70% !important;
 }
 
 /* Button section */
@@ -35,11 +35,11 @@
 
 /* Comment section */
 .comment-section .title {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 30px;
-  margin: 10px;
+  margin: 5px;
   color: white;
-  padding: 10px; 
+  padding: 5px; 
   background-color: orange; 
 }
 
@@ -57,6 +57,9 @@
 
 .comment-section .btn {
   font-size: 30px;
+  font-weight:600;
+  background-color: orange; 
+  border-color:orange;
 }
 
 /**/
