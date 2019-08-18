@@ -2,8 +2,10 @@
 /*Header*/
 .header {
   width: 100%;
-  height: 60px; 
   background-color: red; 
+  transition: height 0.5s;
+  box-sizing: content-box !important;
+  max-height: 50px; 
 }
 
 .header .container {
@@ -17,6 +19,7 @@
   font-family: 'Courier New', Courier, monospace; 
   padding-left: 20px;
   padding-right: 20px;
+  transition: font-size 0.5s;
 }
 
 .header .container .menu:hover {
@@ -30,6 +33,7 @@
   font-family: 'Courier New', Courier, monospace; 
   float: left;
   position: relative;
+  transition: font-size 0.5s;
 }
 
 /*==End of header==*/

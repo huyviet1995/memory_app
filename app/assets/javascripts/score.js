@@ -55,9 +55,48 @@ Score.registerAjaxReturn = async function(container) {
   })
 }
 
+Score.registerCollapseMenu = function() {
+    var prevScrollTop = window.pageYOffset; 
+    var container = '.header';
+    var containerIntro = '.header .intro';
+    var containerMenuText = '.header .main,.help,.about';
+
+    var containerHeight = $(container).css('height');
+    var containerIntroFontSize = $(containerIntro).css('font-size');
+    var containerMenuFontSize = $(containerMenuText).css('font-size');
+
+    window.onscroll = function() {
+        var currentScrollTop = window.pageYOffset;
+        if (currentScrollTop > prevScrollTop) {
+            $(container).css({
+                'height' : '40px',
+            })
+            $(containerIntro).css({
+                'font-size': '35px',
+            })
+            $(containerMenuText).css({
+                'font-size': '35px',
+            })
+        }
+        else {
+            $(container).css({
+                'height' : containerHeight,
+            })
+            $(containerIntro).css({
+                'font-size': containerIntroFontSize,
+            })
+            $(containerMenuText).css({
+                'font-size': containerMenuFontSize,
+            })
+        }
+    }
+} 
+
 $(document).ready(function() {
 
   Score.registerAjaxReturn("#ajax-return");
+
+  Score.registerCollapseMenu();
 
   var ctx = document.getElementById('myChart').getContext('2d');
   var finalScore = $("input[name=final-score]").val();
