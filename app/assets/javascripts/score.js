@@ -92,12 +92,7 @@ Score.registerCollapseMenu = function() {
     }
 } 
 
-$(document).ready(function() {
-
-  Score.registerAjaxReturn("#ajax-return");
-
-  Score.registerCollapseMenu();
-
+Score.registerGraph = function() {
   var ctx = document.getElementById('myChart').getContext('2d');
   var finalScore = $("input[name=final-score]").val();
   var scores_info_string = $("input[name='score-graph-info']").val();
@@ -134,4 +129,16 @@ $(document).ready(function() {
           }
       }
   });
+}
+
+$(document).ready(function() {
+
+  Score.registerAjaxReturn("#ajax-return");
+
+  Score.registerCollapseMenu();
+
+  if (window.location.pathname.includes('scores')) {
+    Score.registerGraph();
+  }
+
 })
