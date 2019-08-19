@@ -16,16 +16,22 @@ html {
 }
 
 .main-menu .menu-board .option {
-  width: 100%;
+  max-width: 500px; 
+  width: 400px;
+  height: 100px;
   float: left;
-  padding: 20px;
-  font-size: 50px; 
+  padding: 10px;
+  font-size: 60px !important; 
   font-family: Arial, Helvetica, sans-serif;
+  background-color: red; 
+  color: white;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 .main-menu .menu-board .option:hover {
-  font-size: 55px; 
-  color: red;  
+  text-decoration: none;  
+  background-color: orange;
 } 
 
 .main-menu .intro {

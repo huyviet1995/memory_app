@@ -235,7 +235,6 @@ $(document).ready(function() {
   if (window.location.pathname.includes('game')) {
     $('.menu .main,.help,.about').on('click', function() {
       var canQuit = confirm('Are you sure to quit the game?');
-      var clickedMenu = $(this).find('a');
       if (!canQuit) {
         return false;
       }
