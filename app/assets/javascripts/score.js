@@ -60,10 +60,12 @@ Score.registerCollapseMenu = function() {
     var container = '.header';
     var containerIntro = '.header .intro';
     var containerMenuText = '.header .main,.help,.about';
+    //var containerMenuTextHover = '.header .menu .main:hover,.help:hover,.about:hover'
 
     var containerHeight = $(container).css('height');
     var containerIntroFontSize = $(containerIntro).css('font-size');
     var containerMenuFontSize = $(containerMenuText).css('font-size');
+    //var containerMenuTextHoverPaddingBottom = $(containerMenuTextHover).css('padding-bottom');
 
     window.onscroll = function() {
         var currentScrollTop = window.pageYOffset;

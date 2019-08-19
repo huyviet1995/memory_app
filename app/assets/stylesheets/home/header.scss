@@ -23,11 +23,19 @@
   padding-left: 20px;
   padding-right: 20px;
   transition: font-size 0.5s;
+  float:left;
+  text-decoration: none;
 }
 
-.header .container .menu:hover {
-  font-size: 42px; 
-  color: yellow;
+.header .main a, .help a, .about a {
+  color: white;
+  text-decoration: none;
+}
+
+/* menu on hover*/
+.header .container .menu .main a:hover,.help a:hover,.about a:hover {
+  text-decoration: none;
+  color: orange;
 }
 
 .header .container .intro {
@@ -37,6 +45,11 @@
   float: left;
   position: relative;
   transition: font-size 0.5s;
+}
+
+.header .container .intro:hover {
+  color:white;
+  text-decoration: none;
 }
 
 /*==End of header==*/

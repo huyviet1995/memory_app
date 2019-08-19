@@ -2,9 +2,9 @@
   <div class = "container">
     <%= link_to 'TEST YOUR MEMORY', main_path, class: 'intro'%>
     <div class = 'menu'>
-      <%= link_to 'MAIN', main_path, class: 'main'%>
-      <%= link_to 'HELP', tutorial_path, class: 'help'%>
-      <%= link_to 'ABOUT', about_path, class: 'about'%>
+      <div class='main'> <%= link_to 'MAIN', main_path%> </div>
+      <div class='help'> <%= link_to 'HELP', tutorial_path%> </div>
+      <div class='about'> <%= link_to 'ABOUT', about_path%> </div>
     </div>
   </div>
 </nav>
