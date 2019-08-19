@@ -180,11 +180,12 @@ Game.isPickMissed = function(coordinate) {
 }
 
 Game.showRepeatLevelButton = function() {
-  var repeatLevelButton = $(/*html */`<input type='button' class='btn btn-primary' value='PLAY AGAIN!'></input>`)
+  var repeatLevelButton = $(/*html */`<input type='button' class='btn btn-primary' value='REPEAT LEVEL!'></input>`)
   var currentLevel = Game.currentLevel;
   repeatLevelButton.css({
     'font-size': '30px',
     'border-radius': '5px',
+    'margin-right': '15px',
   })
   repeatLevelButton.on('click', function() {
     GameUtils.createAndSendFormWithOptions({
@@ -285,13 +286,10 @@ $(document).ready(function() {
           Game.displayLosingMessage(resultMessage);
           Game.updateLivesCountUI(Game.livesCount-1);
           Game.livesCount--; 
-          if (Game.livesCount==0) {
-            Game.showViewScoreButton();
-            Game.showMainMenuButton();
-          }
-          else {
+          if (Game.livesCount > 0) {
             Game.showRepeatLevelButton(); 
           }
+          Game.showViewScoreButton();
         }
       }
     }
@@ -318,13 +316,10 @@ $(document).ready(function() {
           Game.displayLosingMessage(resultMessage);
           Game.updateLivesCountUI(Game.livesCount-1);
           Game.livesCount--;
-          if (Game.livesCount== 0) {
-            Game.showViewScoreButton(); 
-            Game.showMainMenuButton();
-          }
-          else {
+          if (Game.livesCount > 0) {
             Game.showRepeatLevelButton();
           }
+          Game.showViewScoreButton(); 
         }
       }
     }
