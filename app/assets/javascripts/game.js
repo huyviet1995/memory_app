@@ -231,6 +231,17 @@ $(document).ready(function() {
   Game.livesCount = parseInt($('input[name=lives-count]').val());
   Game.score = parseInt($('input[name=current-score]').val());
 
+  /** DUring game, cannot click any of those menus  */
+  if (window.location.pathname.includes('game')) {
+    $('.menu .main,.help,.about').on('click', function() {
+      var canQuit = confirm('Are you sure to quit the game?');
+      var clickedMenu = $(this).find('a');
+      if (!canQuit) {
+        return false;
+      }
+    })
+  }
+
   /** Cannot click any square at the start of the game */
   $('.front-square .flip-square-inner').css('pointer-events', 'none');
 
@@ -256,6 +267,8 @@ $(document).ready(function() {
   /** Each square when clicked should should be flipped
    * Store the squares coordinates 
    */
+
+  /** Build */
 
   $('.front-square .flip-square-inner').on('click', function() {
     if ($(this).hasClass('flip-on-click')) {
