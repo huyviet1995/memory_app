@@ -19,7 +19,7 @@
 .header .container .menu .main, .help, .about {
   color: white; 
   font-size: 40px;
-  font-family: 'Courier New', Courier, monospace; 
+  font-family: Arial, Helvetica, sans-serif; 
   padding-left: 20px;
   padding-right: 20px;
   transition: font-size 0.5s;
@@ -35,13 +35,13 @@
 /* menu on hover*/
 .header .container .menu .main a:hover,.help a:hover,.about a:hover {
   text-decoration: none;
-  color: orange;
+  font-weight: 600;
 }
 
 .header .container .intro {
   color: white;
   font-size: 40px;
-  font-family: 'Courier New', Courier, monospace; 
+  font-family: Arial, Helvetica, sans-serif;
   float: left;
   position: relative;
   transition: font-size 0.5s;
