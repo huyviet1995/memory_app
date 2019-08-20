@@ -2,10 +2,16 @@
   Hello world, my name is Viet Dang 
   <div id = 'main-content'>
     <div id = 'box-header'>
+
+      <div id = 'sign-in-option'>
+        SIGN IN 
+      </div>
+      <div id = 'sign-up-option'>
+        SIGN UP
+      </div>
+
     </div>
     <div id = 'box-body'>
-        <div id = 'nav-bar'>
-        </div>
         <div id = 'sign-in-view'>
           <%= form_with(url: '/users', method: :post) do |form| %>
             <div class = 'row form-group'>
