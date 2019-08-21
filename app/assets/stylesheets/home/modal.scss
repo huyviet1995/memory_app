@@ -32,11 +32,26 @@
   background-color: orange; 
 }
 
+
 .sign-in-box #box-body {
   height: 400px;
   width: 100%;
   display: table;
   background-color: white;
+}
+
+#box-body #sign-up-view {
+  overflow: auto; 
+}
+
+#box-body #sign-up-view .btn {
+  margin-top: 10px;
+  margin-bottom: 10px; 
+} 
+
+#box-body #sign-in-view {
+  auto-flow: auto;
+  display: none;
 }
 
 .sign-in-box #box-footer {
