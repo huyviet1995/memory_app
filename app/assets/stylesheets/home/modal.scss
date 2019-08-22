@@ -1,6 +1,7 @@
 /*Header*/
 
 .sign-in-box {
+  display: none; 
   position: fixed; 
   width: 100%;
   height: 100%;
@@ -11,21 +12,33 @@
 
 .sign-in-box #main-content {
   margin: auto;
-  width: 50%; 
+  width: 45%; 
 }
 
 .sign-in-box #box-header,#box-body,#box-footer {
 }
 
-
 .sign-in-box #box-header #sign-in-option,#sign-up-option {
-  font-size: 30px;
+  font-size: 35px;
   text-align: center;
   color: white;
   float: left;
-  width: 50%; 
+  width: 45%; 
   vertical-align: center; 
   background-color: red;
+}
+
+.sign-in-box #close-button {
+  color: white; 
+  float: left;
+  width: 10%; 
+  margin: auto;
+  font-size: 35px;   
+  background-color: red;
+}
+
+.sign-in-box #close-button:hover {
+  background-color: orange;
 }
 
 #box-header #sign-in-option:hover,#sign-up-option:hover {

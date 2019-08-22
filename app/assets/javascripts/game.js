@@ -134,16 +134,17 @@ Game.showViewScoreButton = function() {
     'margin-right': '5px'
   })
   viewScoreButton.on('click', function() {
-    finalScore = parseInt($('input[name=current-score]').val());
-    Game.storeScore({score: finalScore});
-    GameUtils.createAndSendFormWithOptions({
-      path: '/scores',
-      params: {
-        level: Game.currentLevel, 
-        score: Game.score,
-      },
-      method: 'POST'
-    })
+    modal.open(); 
+    //finalScore = parseInt($('input[name=current-score]').val());
+    //Game.storeScore({score: finalScore});
+    //GameUtils.createAndSendFormWithOptions({
+      //path: '/scores',
+      //params: {
+        //level: Game.currentLevel, 
+        //score: Game.score,
+      //},
+      //method: 'POST'
+    //})
   })
   $('.button-section').append(viewScoreButton);
   viewScoreButton.show();

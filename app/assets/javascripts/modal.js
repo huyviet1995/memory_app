@@ -18,9 +18,23 @@ modal.switchViews = function({option =  '#sign-in-view'} = {}) {
   $(otherView).css({
     'display': 'none'
   })
+
+}
+
+modal.close = function() {
+  $('.sign-in-box').css('display', 'none');
+} 
+
+modal.open = function() {
+  $('.sign-in-box').css('display', 'block');
 }
 
 $(document).ready(function() {
+
+  $('#box-header #close-button').on('click', function() {
+    modal.close();
+  })
+
   $('#box-header #sign-in-option').on('click', function() {
     modal.switchViews({option: '#sign-in-option'})
   })
