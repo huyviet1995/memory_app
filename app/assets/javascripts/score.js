@@ -59,7 +59,7 @@ Score.registerCollapseMenu = function() {
     var prevScrollTop = window.pageYOffset; 
     var container = '.header';
     var containerIntro = '.header .intro';
-    var containerMenuText = '.header .main,.help,.about';
+    var containerMenuText = '.header .option';
     //var containerMenuTextHover = '.header .menu .main:hover,.help:hover,.about:hover'
 
     var containerHeight = $(container).css('height');
