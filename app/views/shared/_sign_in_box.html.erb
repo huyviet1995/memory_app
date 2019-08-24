@@ -17,7 +17,7 @@
     </div>
     <div id = 'box-body'>
         <div id = 'sign-in-view'>
-          <%= form_with(url: '/users', method: :post) do |form| %>
+          <%= form_for(:session, url: login_path ) do |form| %>
             <div class = 'row form-group'>
               <%= form.label :meail, 'Email', class: 'col-sm-3'%>
               <%= form.text_field :email, placeholder: 'example@gmail.com', class: 'col-sm-5'%>

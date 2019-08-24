@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_073859) do
+ActiveRecord::Schema.define(version: 2019_08_23_152857) do
 
   create_table "plays", force: :cascade do |t|
     t.integer "score", default: 0
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_08_22_073859) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "password_digest"
   end
 
 end
