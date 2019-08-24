@@ -16,7 +16,7 @@
 }
 
 /* Style the menu text*/
-.header .container .menu .main, .help, .about {
+.header .container .menu .option {
   color: white; 
   font-size: 40px;
   font-family: Arial, Helvetica, sans-serif; 
@@ -27,13 +27,13 @@
   text-decoration: none;
 }
 
-.header .main a, .help a, .about a {
+.header .option a {
   color: white;
   text-decoration: none;
 }
 
 /* menu on hover*/
-.header .container .menu .main a:hover,.help a:hover,.about a:hover {
+.header .container .menu .option:hover {
   text-decoration: none;
   font-weight: 600;
 }
