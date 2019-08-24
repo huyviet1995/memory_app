@@ -52,12 +52,12 @@
 
             <div class = 'row form-group'>
               <%= form.label :password, 'Password:', class: 'col-sm-3'%>
-              <%= form.text_field :password, placeholder: 'password', class: 'col-sm-5' %>
+              <%= form.password_field :password, placeholder: 'password', class: 'col-sm-5' %>
             </div>
 
             <div class = 'row form-group'>
               <%= form.label :password_confirmation, 'Retype pwd:', class: 'col-sm-3' %>
-              <%= form.text_field :password_confirmation, placeholder: 'confirm password', class: 'col-sm-5'%>
+              <%= form.password_field :password_confirmation, placeholder: 'confirm password', class: 'col-sm-5'%>
             </div>
 
             <%= form.submit 'SIGN UP', class: 'btn btn-primary'%>

@@ -4,10 +4,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.first_or_create(user_params)
+    @user = User.new(user_params)
     if @user.save
+      log_in(@user)
       render json: "Thank you for comment!, #{user_params[:email]}"
     else
+      flash.now[:danger] = 'Your login might be incorrect!' 
       render json: "Sorry, your comment has not been save!, #{@user.errors.full_messages}" 
     end
   end
