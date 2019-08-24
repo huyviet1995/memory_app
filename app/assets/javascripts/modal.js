@@ -35,11 +35,11 @@ $(document).ready(function() {
     modal.close();
   })
 
-  $('#box-header #sign-in-option').on('click', function() {
+  $('#sign-in-option').on('click', function() {
     modal.switchViews({option: '#sign-in-option'})
   })
 
-  $('#box-header #sign-up-option').on('click', function() {
+  $('#sign-up-option').on('click', function() {
     modal.switchViews({option: '#sign-up-option'}) 
   })
 })

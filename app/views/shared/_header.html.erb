@@ -5,7 +5,8 @@
       <div class='option'> <%= link_to 'MAIN', main_path%> </div>
       <div class='option'> <%= link_to 'HELP', tutorial_path%> </div>
       <div class='option'> <%= link_to 'ABOUT', about_path%> </div>
-      <div class='option'>  LOGIN </div> 
+      <div class='option' id = 'login'>  LOGIN </div> 
     </div>
   </div>
+  <%= render partial: 'shared/sign_in_box'%>
 </nav>
