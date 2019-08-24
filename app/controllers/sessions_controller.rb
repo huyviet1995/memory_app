@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :save_my_previous_url, only: [:create, :new]
+
   def new
   end
 
@@ -7,7 +9,8 @@ class SessionsController < ApplicationController
     if (user && user.authenticate(session_params[:password])) 
       # Log the user and redirect to the user show page 
       log_in(user) 
-      redirect_to user
+      flash.now[:success] = "Welcome, #{current_user}" 
+      redirect_to session[:my_previous_url] 
     else
       # Create an error message 
       flash.now[:danger] = "Invalid login!"
@@ -15,7 +18,6 @@ class SessionsController < ApplicationController
   end 
 
   private
-
 
   def session_params 
     params.require(:session).permit(
@@ -27,4 +29,8 @@ class SessionsController < ApplicationController
       :password_confirmation
     )
   end 
+
+  def save_my_previous_url
+    session[:my_previous_url] = URI(request.referer || '').path
+  end
 end

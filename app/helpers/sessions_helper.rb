@@ -13,6 +13,9 @@ module SessionsHelper
     @current_user.nil?
   end
 
+  def login_title
+    return "#{current_user.first_name}" if logged_in?
+    "LOG IN"
+  end
 
-  private
 end
