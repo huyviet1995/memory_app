@@ -16,13 +16,7 @@
     <%= form_with(url: "/users", method: :post) do |form| %>
       <div class = 'container'>
         <div class = 'row form-group'>
-          <%= form.label :email, 'Email', class: 'col-sm-2'%>
-          <%= form.text_field :email, placeholder: 'example@gmail.com', class: 'col-sm-5' %>
-        </div>
-
-        <div class = 'row form-group'>
-          <%= form.label :comment, 'Comment', class: 'col-sm-2'%>
-          <%= form.text_area :comment, placeholder:'Cool!!!' ,class: 'col-sm-5' %>
+          <%= form.text_area :comment, placeholder:'Best game ever!!!' ,class: 'col-sm-5' %>
         </div>
       </div>
 
