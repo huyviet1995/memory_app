@@ -1,4 +1,7 @@
 <nav class = "header navbar navbar-fixed-top navbar-text sticky-top navbar-collapse">
+  <% if !logged_in? %>
+    <%= render partial: 'shared/sign_in_box'%>
+  <% end %>
   <div class = "container">
     <%= link_to 'TEST YOUR MEMORY', main_path, class: 'intro'%>
     <div class = 'menu'>
@@ -12,7 +15,7 @@
             <% if logged_in? %>
               <div id = 'collapse-login'>
                 <div class = 'list-group'>
-                  <li class = 'list-group-item'><%=link_to 'View Profile', user_path(current_user), class: 'current-user-menu'%></li>
+                  <li class = 'list-group-item'><%=link_to 'Profile', user_path(current_user), class: 'current-user-menu'%></li>
                   <li class = 'list-group-item'><%=link_to 'Log out','/logout', method: :delete, class: 'current-user-menu'%></li>
                 </div>
               </div>
