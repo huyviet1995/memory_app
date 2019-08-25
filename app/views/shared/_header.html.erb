@@ -10,10 +10,10 @@
           <a data-toggle = 'collapse' href="#collapse-login" aria-expanded='false' aria-controls="#collapse-login"> <%=login_title%> 
           </a>
             <div id = 'collapse-login'>
-               <ul class = 'list-group'>
-                 <li class = 'list-group-item'> View Profile </li>
-                 <li class = 'list-group-item'> Log out </li>
-               </ul>
+               <div class = 'list-group'>
+                 <li class = 'list-group-item'><%=link_to 'View Profile', user_path(current_user), class: 'current-user-menu'%></li>
+                 <li class = 'list-group-item'><%=link_to 'Log out','/logout', method: :delete, class: 'current-user-menu'%></li>
+               </div>
             </div>
     </div>
   </div>

@@ -17,6 +17,12 @@ class SessionsController < ApplicationController
     end 
   end 
 
+  # Render  
+  def destroy
+    log_out
+    redirect_to '/'
+  end
+
   private
 
   def session_params 

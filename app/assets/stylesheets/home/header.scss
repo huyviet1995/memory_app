@@ -43,6 +43,10 @@
   font-size: 30px;
 }
 
+.header #collapse-panel .current-user-menu {
+  color: red; 
+}
+
 /* menu on hover*/
 .header .container .menu .option:hover {
   text-decoration: none;
