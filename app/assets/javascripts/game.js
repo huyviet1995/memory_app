@@ -128,23 +128,29 @@ Game.calculateScore = function(missesCount = Game.missesCount) {
 
 Game.showViewScoreButton = function() {
   viewScoreButton = $("<input type='button' value='VIEW SCORE!' class = 'btn btn-primary'></input>")
+  isLoggedIn = $("input[name=is-logged-in]").val();
   viewScoreButton.css({
     'text-align':'center',
     'font-size':'30px',
     'margin-right': '5px'
   })
   viewScoreButton.on('click', function() {
-    modal.open(); 
-    //finalScore = parseInt($('input[name=current-score]').val());
-    //Game.storeScore({score: finalScore});
-    //GameUtils.createAndSendFormWithOptions({
-      //path: '/scores',
-      //params: {
-        //level: Game.currentLevel, 
-        //score: Game.score,
-      //},
-      //method: 'POST'
-    //})
+    if (isLoggedIn == 'true') {
+      finalScore = parseInt($('input[name=current-score]').val());
+      user_id = parseInt($('input[name=user-id]').val());
+      Game.storeScore({score: finalScore});
+      GameUtils.createAndSendFormWithOptions({
+        path: `/scores/${user_id}`,
+        params: {
+          level: Game.currentLevel, 
+          score: Game.score,
+        },
+        method: 'POST'
+      })
+    }
+    else {
+      modal.open();
+    }
   })
   $('.button-section').append(viewScoreButton);
   viewScoreButton.show();
