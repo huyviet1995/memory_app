@@ -1,13 +1,29 @@
 class ScoresController < ApplicationController
-  before_action :calculate_score_percentages, only: [:index]
-  before_action :get_score, only: [:index] 
-  before_action :get_level, only: [:index]
+  before_action :calculate_score_percentages, only: [:show]
+  before_action :get_score, only: [:show] 
+  before_action :get_level, only: [:show]
+  before_action :save_play, only: [:show] 
   skip_before_action :verify_authenticity_token
 
-  def index
-  end 
+  def show
+    @user = User.find(score_params[:user_id].to_i)
+  end
 
   private
+
+  def save_play 
+    new_play = Play.new(
+      level: score_params[:level],
+      score: score_params[:score],
+      user_id: score_params[:user_id].to_i
+    )
+    if new_play 
+      new_play.save!
+      return new_play
+    else
+      return nil
+    end
+  end
 
   def get_score 
     @score ||= score_params[:score].nil? ? 0 : score_params[:score]
@@ -64,6 +80,7 @@ class ScoresController < ApplicationController
       :score,
       :level,
       :missesCount,
+      :user_id,
     )
   end
 
