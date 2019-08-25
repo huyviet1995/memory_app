@@ -12,7 +12,7 @@
 }
 
 .header .container {
-  max-width: 90%;
+  max-width: 80%;
 }
 
 /* Style the menu text*/
@@ -30,6 +30,17 @@
 .header .option a {
   color: white;
   text-decoration: none;
+}
+
+/* Collapse panel for the login button */
+.header #collapse-panel {
+  width: 10%;
+  color: red;
+  position: absolute;
+}
+
+.header #collapse-panel .list-group-item {
+  font-size: 30px;
 }
 
 /* menu on hover*/

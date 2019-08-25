@@ -5,8 +5,16 @@
       <div class='option'> <%= link_to 'MAIN', main_path%> </div>
       <div class='option'> <%= link_to 'HELP', tutorial_path%> </div>
       <div class='option'> <%= link_to 'ABOUT', about_path%> </div>
-      <div class='option' id = 'login'> <%=login_title%> </div> 
+      <div class='option' id = 'login'> 
+        <div id = 'collapse-panel' aria-expanded='false' aria-controls='collapse'>
+          <a data-toggle = 'collapse' href="#collapse-login" aria-expanded='false' aria-controls="#collapse-login"> <%=login_title%> 
+          </a>
+            <div id = 'collapse-login'>
+               <ul class = 'list-group'>
+                 <li class = 'list-group-item'> View Profile </li>
+                 <li class = 'list-group-item'> Log out </li>
+               </ul>
+            </div>
     </div>
   </div>
-  <%= render partial: 'shared/sign_in_box'%>
 </nav>
