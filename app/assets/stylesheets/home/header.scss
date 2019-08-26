@@ -17,7 +17,7 @@
 
 /* Style the menu text*/
 .header .container .menu .option {
-  color: white; 
+  color: white;
   font-size: 40px;
   font-family: Arial, Helvetica, sans-serif; 
   padding-left: 20px;
@@ -32,6 +32,10 @@
   text-decoration: none;
 }
 
+.dropdown-item a {
+  color: red !important;
+}
+
 /* Collapse panel for the login button */
 .header #collapse-panel {
   width: 10%;
@@ -39,12 +43,32 @@
   position: absolute;
 }
 
-.header #collapse-panel .list-group-item {
+.option #dropdown-login {
+  display: none;
+}
+
+.header #dropdown-login .dropdown-item {
   font-size: 30px;
+  padding-left: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  top: 50px;
+  padding-left: 0; 
+  padding-top: 20px;
+}
+
+.show {
+  display: block !important; 
 }
 
 .header #collapse-panel .current-user-menu {
   color: red; 
+}
+
+.header #dropdown-login {
+  position: absolute;
+  font-size: 30px;
+  top: 60px;
 }
 
 /* menu on hover*/
