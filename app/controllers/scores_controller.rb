@@ -4,6 +4,8 @@ class ScoresController < ApplicationController
   before_action :get_score, only: [:index] 
   before_action :get_level, only: [:index]
   before_action :save_play, only: [:index] 
+  before_action :get_highest_score, only: [:show]
+  before_action :get_highest_level, only: [:show]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -14,6 +16,16 @@ class ScoresController < ApplicationController
   end
 
   private
+
+  def get_highest_score
+    plays = get_user_plays
+    @highest_score = plays.maximum(:score)
+  end
+
+  def get_highest_level
+    plays = get_user_plays 
+    @highest_level = plays.maximum(:level)
+  end 
 
   def save_play 
     new_play = Play.new(
