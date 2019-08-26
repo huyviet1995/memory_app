@@ -14,7 +14,9 @@
 
   <div class = "game-section">
     <input type = 'hidden' name='is-logged-in' value = <%=current_user.present?%>>
-    <input type = 'hidden' name='user-id' value=<%= current_user.id%>>
+    <%if logged_in?%>
+      <input type = 'hidden' name='user-id' value=<%= current_user.id%>>
+    <% end %>
     <input type = 'hidden' name='no-of-cols' value = <%=@no_of_col%>>
     <input type = 'hidden' name='no-of-rows' value = <%=@no_of_row%>>
     <input type = 'hidden' name='current-level' value = <%=@current_lvl%>>

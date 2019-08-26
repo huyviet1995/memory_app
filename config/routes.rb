@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get '/tutorial', to: 'home#tutorial', as: :tutorial
   get '/about', to: 'home#about', as: :about 
 
-  post '/scores/:user_id', to: 'scores#show', as: :scores
+  get 'scores/:user_id', to: 'scores#show', as: :score_summary
+
+  post '/scores/:user_id', to: 'scores#index', as: :scores
 
   post '/play', to: 'plays#create', as: :create_play
 

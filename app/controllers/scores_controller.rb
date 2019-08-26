@@ -1,12 +1,16 @@
 class ScoresController < ApplicationController
-  before_action :calculate_score_percentages, only: [:show]
-  before_action :get_score, only: [:show] 
-  before_action :get_level, only: [:show]
-  before_action :save_play, only: [:show] 
+  before_action :get_all_score_summary, only: [:index]
+  before_action :get_user_plays, only: [:show]
+  before_action :get_score, only: [:index] 
+  before_action :get_level, only: [:index]
+  before_action :save_play, only: [:index] 
   skip_before_action :verify_authenticity_token
 
+  def index
+  end
+
+  # User summary
   def show
-    @user = User.find(score_params[:user_id].to_i)
   end
 
   private
@@ -17,7 +21,7 @@ class ScoresController < ApplicationController
       score: score_params[:score],
       user_id: score_params[:user_id].to_i
     )
-    if new_play 
+    if new_play
       new_play.save!
       return new_play
     else
@@ -37,8 +41,17 @@ class ScoresController < ApplicationController
     @scores ||= Play.all.pluck(:score).compact.sort();
   end
 
-  def calculate_score_percentages
-    scores_arr = get_scores_arr 
+  def get_all_score_summary
+    calculate_score_percentages(get_scores_arr)
+  end
+
+  def get_user_plays 
+    user = User.includes(:plays).find(score_params[:user_id].to_i)
+    @plays = user.plays.all
+  end
+
+  # Get score for displaying in graph 
+  def calculate_score_percentages(scores_arr)
     array_size = (scores_arr.last - scores_arr.first) / 100 + 1;
     score_counts_arr = Array.new(array_size) {0}
     count = 0
@@ -64,7 +77,7 @@ class ScoresController < ApplicationController
     total_sum = 0 
     score_counts_arr.each_with_index do |score_count, idx|
       if idx == array_size - 1
-        @score_percentage[9] = 100 - total_sum 
+        @score_percentage[array_size] = 100 - total_sum 
       else
         @score_percentage[idx] = (score_count*100)/sum
         total_sum = total_sum + @score_percentage[idx]  

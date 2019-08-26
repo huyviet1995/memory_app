@@ -9,10 +9,14 @@
  text-align: center;
 }
 
+.score-summary {
+  margin-bottom: 30px;
+}
+
 .graph-section {
-  height: 80% ;
-  width: 100% ; 
-  font-size: 30px; 
+  height: 80%;
+  width: 100%; 
+  font-size:30px; 
 }
 
 .graph-section #myChart {
@@ -43,6 +47,29 @@
   background-color: orange; 
 }
 
+/* Table info */
+table {
+  margin: auto;
+  border-style: solid; 
+}
+
+table tr {
+  width: 40px; 
+  border-style: dashed;
+}
+
+table th {
+  width: 300px; 
+  font-size: 30px;  
+  text-align: center; 
+}
+
+table td {
+  width: 300px;
+  font-size: 30px;
+  text-align: center;
+}
+
 .comment-section .row {
   font-size: 25px;
   display: flex;
@@ -59,5 +86,3 @@
   font-size: 30px;
   font-weight:600;
 }
-
-/**/

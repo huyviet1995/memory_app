@@ -1,29 +1,25 @@
-<div class = "main-scores-body">
+<div class = "scores-summary-body">
+
   <div class = "score-info-section">
-    <div class = "score"> SCORE: <%=@score%></div>
-    <div class = "level"> LEVEL: <%=@level%></div>
+    <div class = "score"> HIGHEST SCORE:<%=@score%></div>
+    <div class = "level"> HIGHEST LEVEL:<%=@level%></div>
   </div>
 
-  <div class = "graph-section">
-    <input type = 'hidden' name = 'final-score' value=<%=@score%>>
-    <input type = 'hidden' name = 'score-graph-info' value=<%=@score_percentage.to_json %>>
-    <canvas id="myChart"></canvas>
-  </div>
-
-  <div class = "comment-section">
-    <div class = 'title'>TELL US WHAT YOU THINK?</div>
-    <div id = "ajax-return"></div>
-    <%= form_with(url: "/users", method: :post) do |form| %>
-      <div class = 'container'>
-        <div class = 'row form-group'>
-          <%= form.text_area :comment, placeholder:'Best game ever!!!' ,class: 'col-sm-5' %>
-        </div>
-      </div>
-
-      <div class = 'buttons'>
-        <%= form.submit 'SUBMIT', class: 'btn btn-primary'%>
-      </div>
-    <% end %>
+  <div class = 'score-summary'>
+    <table>
+      <tr>
+        <th> Time </th>
+        <th> Level </th>
+        <th> Score </th>
+      </tr>
+      <% @plays.each do |play| %>
+      <tr>
+        <td> <%= play.created_at %> </td>
+        <td> <%= play.level %></td>
+        <td> <%= play.score %> </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 
 </div>
