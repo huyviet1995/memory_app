@@ -12,16 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_08_23_152857) do
 
-  create_table "plays", force: :cascade do |t|
+  create_table "plays", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "score", default: 0
     t.integer "level", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_plays_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
