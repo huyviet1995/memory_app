@@ -1,0 +1,25 @@
+<div class = "scores-summary-body">
+
+  <div class = "score-info-section">
+    <div class = "report-summary"> HIGHEST SCORE: <%=@highest_score%></div>
+    <div class = "report-summary"> HIGHEST LEVEL: <%=@highest_level%></div>
+  </div>
+
+  <div class = 'score-summary'>
+    <table>
+      <tr>
+        <th> Time </th>
+        <th> Level </th>
+        <th> Score </th>
+      </tr>
+      <% @plays.each do |play| %>
+      <tr>
+        <td class = 'date-time'> <%= format_time(play.created_at) %> </td>
+        <td> <%= play.level %></td>
+        <td> <%= play.score %> </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>

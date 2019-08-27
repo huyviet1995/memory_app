@@ -1,0 +1,14 @@
+<div class = "footer">
+  <div class = "container">
+    <p> A product made by Viet Dang - All rights reserved </p>
+  </div>
+  <div class = "my-info">
+    <div class = "my-phone-number"> <%=I18n.t('my_info.phone_number') %></div>
+    <div class = "my-email"> <%=I18n.t('my_info.email')%></div>
+    <div class = "my-address"><%=I18n.t('my_info.address')%></div>
+  </div>
+  <div class = "social-media-icon">
+    <%= link_to image_tag("facebook_icon.png", alt: 'facebook'), I18n.t('my_info.facebook'), target: :_blank %>
+    <%= link_to image_tag("Linkedin_icon.png", alt: 'linkedin'), I18n.t('my_info.linkedin'), target: :_blank %>
+  </div>
+</div>

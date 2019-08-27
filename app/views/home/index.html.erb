@@ -1,0 +1,15 @@
+<div class = "main-menu">
+  <div class = "intro">
+    <p> HOW GOOD CAN YOU MEMORIZE? </p>
+  </div>
+
+  <div class = "menu-board">
+    <%= link_to 'START', game_path, class: 'option start ', :data => { :reload => true}%>
+    <% if logged_in? %>
+      <%= link_to 'SCORES', scores_path(current_user), method: :get, class: 'option scores', :data => {:reload => true}%>
+    <% end %>
+    <%= link_to 'TUTORIAL', tutorial_path, class: 'option tutorial', :data => {:reload => true}%>
+    <%= link_to 'ABOUT', about_path, class: 'option about', :data => {:reload => true}%>
+  </div>
+
+</div>

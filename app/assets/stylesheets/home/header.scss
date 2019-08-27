@@ -1,0 +1,94 @@
+
+/*Header*/
+.header {
+  width: 100%;
+  background-color: red; 
+  transition: height 0.5s;
+  box-sizing: content-box !important;
+  max-height: 50px; 
+  padding: 0px;  
+  padding-top: 5px;
+  padding-bottom: 5px; 
+}
+
+.header .container {
+  max-width: 80%;
+}
+
+/* Style the menu text*/
+.header .container .menu .option {
+  color: white;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif; 
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: font-size 0.5s;
+  float:left;
+  text-decoration: none;
+}
+
+.header .option a {
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-item a {
+  color: red !important;
+}
+
+/* Collapse panel for the login button */
+.header #collapse-panel {
+  width: 10%;
+  color: red;
+  position: absolute;
+}
+
+.option #dropdown-login {
+  display: none;
+}
+
+.header #dropdown-login .dropdown-item {
+  font-size: 30px;
+  padding-left: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  top: 50px;
+  padding-left: 0; 
+  padding-top: 20px;
+}
+
+.show {
+  display: block !important; 
+}
+
+.header #collapse-panel .current-user-menu {
+  color: red; 
+}
+
+.header #dropdown-login {
+  position: absolute;
+  font-size: 30px;
+  top: 60px;
+}
+
+/* menu on hover*/
+.header .container .menu .option:hover {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.header .container .intro {
+  color: white;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  float: left;
+  position: relative;
+  transition: font-size 0.5s;
+}
+
+.header .container .intro:hover {
+  color:white;
+  text-decoration: none;
+}
+
+/*==End of header==*/

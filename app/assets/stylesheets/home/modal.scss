@@ -1,0 +1,99 @@
+/*Header*/
+
+.sign-in-box {
+  display: none; 
+  position: fixed; 
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.sign-in-box #main-content {
+  margin: auto;
+  width: 45%; 
+  margin-top: 10%;
+}
+
+.sign-in-box #box-header,#box-body,#box-footer {
+}
+
+.sign-in-box #box-header #sign-in-option,#sign-up-option {
+  font-size: 35px;
+  text-align: center;
+  color: white;
+  float: left;
+  width: 45%; 
+  vertical-align: center; 
+  background-color: red;
+}
+
+.sign-in-box #close-button {
+  color: white; 
+  float: left;
+  width: 10%; 
+  margin: auto;
+  font-size: 35px;   
+  background-color: red;
+  text-align: center; 
+}
+
+.sign-in-box #close-button:hover {
+  background-color: orange;
+}
+
+#box-header #sign-in-option:hover,#sign-up-option:hover {
+  background-color: orange; 
+}
+
+.sign-in-box #box-body {
+  height: 400px;
+  width: 100%;
+  display: table;
+  background-color: white;
+}
+
+#box-body #sign-up-view {
+  overflow: auto; 
+  text-align: center; 
+  display: none;
+}
+
+#box-body #sign-up-view .btn {
+  margin-top: 10px;
+  margin-bottom: 10px; 
+} 
+
+#box-body #sign-in-view {
+  auto-flow: auto;
+  text-align: center;
+}
+
+.sign-in-box #box-footer {
+  height: 30px;
+  background-color: red;
+}
+
+.sign-in-box .form-group {
+  margin: auto;
+  justify-content: center;
+  margin: 20px;
+  font-size: 30px;
+  height: 60px;
+} 
+
+.sign-in-box .btn {
+  font-size: 30px;
+  margin-top: 20px; 
+}
+
+#sign-in-view {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.sign-in-box .body {
+  height: 100px;
+}

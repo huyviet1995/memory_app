@@ -1,0 +1,44 @@
+<div class = "main-body">
+
+  <div class = "info-section">
+    <div class = "level-info-section">
+        <div class = "level">Level: <%=@current_lvl%> </div>  
+        <div class = "score">Score: <%=@current_score%> pts</div>
+        <div class = "lives-count"> Lives: <%=@lives_count%> </div>
+    </div>
+    <div class = 'ready-section'>
+      <span class = "count"></span>
+    </div>
+    <div class = "result-message"> </div>
+  </div>
+
+  <div class = "game-section">
+    <input type = 'hidden' name='is-logged-in' value = <%=current_user.present?%>>
+    <%if logged_in?%>
+      <input type = 'hidden' name='user-id' value=<%= current_user.id%>>
+    <% end %>
+    <input type = 'hidden' name='no-of-cols' value = <%=@no_of_col%>>
+    <input type = 'hidden' name='no-of-rows' value = <%=@no_of_row%>>
+    <input type = 'hidden' name='current-level' value = <%=@current_lvl%>>
+    <input type = 'hidden' name='current-score' value = <%=@current_score%>>
+    <input type = 'hidden' name='lives-count' value = <%=@lives_count%> >
+    <input type = 'hidden' name='random-square-coordinates' value = <%="#{@random_square_coordinates.to_json}"%> >
+    <div class = "main-board">
+      <% for i in 0..@no_of_row-1 do%>
+        <span class = "row">
+          <% for j in 0..@no_of_col-1 do%>
+            <div class = "front-square">
+              <div class = 'flip-square-inner' coordinate = <%="[#{i},#{j}]"%>>
+                <div class = 'flip-square-front'> </div>
+                <div class = 'flip-square-back'> </div>
+              </div>
+            </div>
+          <% end%>
+        </span>
+      <% end %>
+    </div>
+  </div>
+  <div class = "button-section">
+  </div>
+
+</div>

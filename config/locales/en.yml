@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+  my_info:
+    phone_number: (84)906-611-895
+    email: vdang@gustavus.edu
+    address: Dist 2, Ho Chi Minh city 
+    linkedin: https://www.linkedin.com/in/viet-dang
+    facebook: https://www.facebook.com/huyviet.dang.7
