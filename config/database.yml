@@ -22,12 +22,14 @@ test:
   <<: *default
   host: memoryappvietdang.czuzkjtlkzha.us-west-1.rds.amazonaws.com
   database: memoryappvietdang 
+  port: 3306
   username: admin
   password: magmadragon
 
 production:
   <<: *default
   host: memoryappvietdang.czuzkjtlkzha.us-west-1.rds.amazonaws.com
+  port: 3306
   database: memoryappvietdang 
   username: admin
   password: magmadragon
