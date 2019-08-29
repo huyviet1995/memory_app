@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :save_my_previous_url, only: [:create]
 
   def show 
   end
@@ -7,10 +8,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      render json: "Thank you for comment!, #{user_params[:email]}"
+      flash[:success] =  "Thank you for comment!, #{user_params[:email]}"
+      redirect_to session[:my_previous_url]
     else
-      flash.now[:danger] = 'Your login might be incorrect!' 
-      render json: "Sorry, your comment has not been save!, #{@user.errors.full_messages}" 
+      flash[:error] = 'Your login might be incorrect!' 
+      redirect_to session[:my_previous_url]
     end
   end
 
@@ -35,6 +37,10 @@ class UsersController < ApplicationController
       :password,
       :password_confirmation
     )
+  end
+
+  def save_my_previous_url
+    session[:my_previous_url] = URI(request.referer || '').path
   end
   
 end
