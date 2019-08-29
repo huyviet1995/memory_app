@@ -33,6 +33,8 @@ Modal.registerAjaxReturn = function({container = '#modal-message'} = {}) {
     })
     $(container).addClass('show')
     $(container).addClass('ajax-success');
+    GameUtils.sleep(1000);
+    window.location.href = `${xhr.response}` 
   })
   document.body.addEventListener('ajax:error', function(event) {
     [data, status, xhr] = event.detail;

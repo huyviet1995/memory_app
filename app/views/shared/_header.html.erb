@@ -1,5 +1,6 @@
 <nav class = "header navbar navbar-fixed-top navbar-text sticky-top navbar-collapse">
   <% if !logged_in? %>
+    <%= turbolinks_cache_control_meta_tag%>
     <%= render partial: 'shared/sign_in_box'%>
   <% end %>
   <div class = "container">

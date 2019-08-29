@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
+
   before_action :save_my_previous_url, only: [:create, :new]
+  before_action :disable_turbolinks_preview_cache, only: [:create, :new]
 
   def new
   end
@@ -10,7 +12,7 @@ class SessionsController < ApplicationController
       # Log the user and redirect to the user show page 
       log_in(user) 
       flash.now[:success] = "Welcome, #{current_user}" 
-      redirect_to session[:my_previous_url] 
+      render json: "#{session[:my_previous_url]}" 
     elsif user.nil?
       render json: "#{session_params[:email]} does not exist. Check your email or sign up!"
     else
