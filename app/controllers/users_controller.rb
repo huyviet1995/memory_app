@@ -16,6 +16,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def create_comment
+  end
+
   def new
   end
 
