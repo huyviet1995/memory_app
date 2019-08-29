@@ -14,6 +14,7 @@ class HomeController < ApplicationController
     @no_of_sqr = @game_difficulty[2]
     @current_lvl = current_lvl
     @random_square_coordinates = random_flipped_square_generator(@no_of_row, @no_of_col, @no_of_sqr).values
+    session[:request_referrer] = request.original_url
   end
 
   def scores
@@ -94,7 +95,11 @@ class HomeController < ApplicationController
       when 8
         return [6,6,7]
       when 9
-        return [6,6,8]
+        return [6,6,9]
+      when 10
+        return [6,6,11]
+      when 11
+        return [6,6,13]
       else
         return [6,6,15]
       end

@@ -1,9 +1,9 @@
 class ScoresController < ApplicationController
+  before_action :save_play, only: [:index] 
   before_action :get_all_score_summary, only: [:index]
   before_action :get_user_plays, only: [:show]
   before_action :get_score, only: [:index] 
   before_action :get_level, only: [:index]
-  before_action :save_play, only: [:index] 
   before_action :get_highest_score, only: [:show]
   before_action :get_highest_level, only: [:show]
   skip_before_action :verify_authenticity_token
@@ -28,6 +28,7 @@ class ScoresController < ApplicationController
   end 
 
   def save_play 
+    return if session[:request_referrer] == request.original_url
     new_play = Play.new(
       level: score_params[:level],
       score: score_params[:score],
@@ -35,6 +36,7 @@ class ScoresController < ApplicationController
     )
     if new_play
       new_play.save!
+      session[:request_referrer] = request.original_url
       return new_play
     else
       return nil
@@ -64,7 +66,8 @@ class ScoresController < ApplicationController
 
   # Get score for displaying in graph 
   def calculate_score_percentages(scores_arr)
-    array_size = (scores_arr.last - scores_arr.first) / 100 + 1;
+    return [100] if scores_arr.blank?
+    array_size = scores_arr.last / 100 + 1;
     score_counts_arr = Array.new(array_size) {0}
     count = 0
 
@@ -89,7 +92,7 @@ class ScoresController < ApplicationController
     total_sum = 0 
     score_counts_arr.each_with_index do |score_count, idx|
       if idx == array_size - 1
-        @score_percentage[array_size] = 100 - total_sum 
+        @score_percentage[array_size-1] = 100 - total_sum 
       else
         @score_percentage[idx] = (score_count*100)/sum
         total_sum = total_sum + @score_percentage[idx]  

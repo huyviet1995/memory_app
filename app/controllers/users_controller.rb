@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :save_my_previous_url, only: [:create]
 
   def show 
   end
@@ -7,11 +8,21 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      render json: "Thank you for comment!, #{user_params[:email]}"
+      flash[:success] =  "Thank you for comment!, #{user_params[:email]}"
+
+      play_info = {}
+      play_info[:path] = session[:my_previous_url]
+      play_info[:level] = play_params[:current_lvl]
+      play_info[:score] = play_params[:score]
+      play_info[:lives_count] = play_params[:lives_count]
+
+      render json: play_info.to_json 
     else
-      flash.now[:danger] = 'Your login might be incorrect!' 
-      render json: "Sorry, your comment has not been save!, #{@user.errors.full_messages}" 
+      render json: "#{user_params[:name]} already exists!" 
     end
+  end
+
+  def create_comment
   end
 
   def new
@@ -35,6 +46,18 @@ class UsersController < ApplicationController
       :password,
       :password_confirmation
     )
+  end
+
+  def play_params
+    params.permit(
+      :current_lvl,
+      :score,
+      :lives_count
+    )
+  end
+
+  def save_my_previous_url
+    session[:my_previous_url] = URI(request.referer || '').path
   end
   
 end

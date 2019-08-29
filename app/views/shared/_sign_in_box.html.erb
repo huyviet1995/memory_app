@@ -15,12 +15,14 @@
       </span>
 
     </div>
+    <div id = 'modal-message'>
+    </div>
     <div id = 'box-body'>
         <div id = 'sign-in-view'>
-          <%= form_for(:session, url: login_path ) do |form| %>
+          <%= form_for(:session, url: login_path, remote: true) do |form| %>
             <div class = 'row form-group'>
               <%= form.label :meail, 'Email', class: 'col-sm-3'%>
-              <%= form.text_field :email, placeholder: 'example@gmail.com', class: 'col-sm-5'%>
+              <%= form.text_field :email, class: 'col-sm-5'%>
             </div>
 
             <div class = 'row form-group'>
@@ -28,37 +30,45 @@
               <%= form.password_field :password, class: 'col-sm-5'%>
             </div>
 
+            <%= form.hidden_field :score, value: @current_score %>
+            <%= form.hidden_field :current_lvl, value: @current_lvl %>
+            <%= form.hidden_field :lives_count, value: @lives_count%>
+
             <%= form.submit 'LOG IN', class: 'btn btn-primary btn-lg' %>
 
           <% end %>
         </div>
 
         <div id = "sign-up-view">
-          <%= form_with(url: '/users', method: :post, local: false) do |form|%>
+          <%= form_with(url: '/users', method: :post) do |form|%>
             <div class = 'row form-group'>
               <%= form.label :first_name, 'First Name', class: 'col-sm-3'  %>
-              <%= form.text_field :first_name, placeholder: 'Viet', class: 'col-sm-5'%>
+              <%= form.text_field :first_name, class: 'col-sm-5'%>
             </div>
 
             <div class = 'row form-group'>
               <%= form.label :last_name, 'Last Name:', class: 'col-sm-3'  %>
-              <%= form.text_field :last_name, placeholder: 'Dang', class: 'col-sm-5'%>
+              <%= form.text_field :last_name, class: 'col-sm-5'%>
             </div>
 
             <div class = 'row form-group'>
               <%= form.label :email, 'Email:', class: 'col-sm-3' %>
-              <%= form.text_field :email, placeholder: 'example@gmail.com', class: 'col-sm-5'%>
+              <%= form.text_field :email, class: 'col-sm-5'%>
             </div>
 
             <div class = 'row form-group'>
               <%= form.label :password, 'Password:', class: 'col-sm-3'%>
-              <%= form.password_field :password, placeholder: 'password', class: 'col-sm-5' %>
+              <%= form.password_field :password, class: 'col-sm-5' %>
             </div>
 
             <div class = 'row form-group'>
               <%= form.label :password_confirmation, 'Retype pwd:', class: 'col-sm-3' %>
-              <%= form.password_field :password_confirmation, placeholder: 'confirm password', class: 'col-sm-5'%>
+              <%= form.password_field :password_confirmation, class: 'col-sm-5'%>
             </div>
+
+            <%= form.hidden_field :score, value: @current_score %>
+            <%= form.hidden_field :current_lvl, value: @current_lvl %>
+            <%= form.hidden_field :lives_count, value: @lives_count%>
 
             <%= form.submit 'SIGN UP', class: 'btn btn-primary'%>
 

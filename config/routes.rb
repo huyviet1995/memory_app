@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   post '/play', to: 'plays#create', as: :create_play
 
+  post '/comments', to: 'comments#create'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create' 
   delete '/logout', to: 'sessions#destroy'
