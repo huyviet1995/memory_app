@@ -1,9 +1,9 @@
 class ScoresController < ApplicationController
+  before_action :save_play, only: [:index] 
   before_action :get_all_score_summary, only: [:index]
   before_action :get_user_plays, only: [:show]
   before_action :get_score, only: [:index] 
   before_action :get_level, only: [:index]
-  before_action :save_play, only: [:index] 
   before_action :get_highest_score, only: [:show]
   before_action :get_highest_level, only: [:show]
   skip_before_action :verify_authenticity_token
@@ -68,7 +68,6 @@ class ScoresController < ApplicationController
     array_size = scores_arr.last / 100 + 1;
     score_counts_arr = Array.new(array_size) {0}
     count = 0
-
 
     scores_arr.each do |score|
       loop do

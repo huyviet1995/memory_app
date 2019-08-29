@@ -127,7 +127,7 @@ Game.calculateScore = function(missesCount = Game.missesCount) {
 }
 
 Game.showViewScoreButton = function() {
-  viewScoreButton = $("<input type='button' value='VIEW SCORE!' class = 'btn btn-primary'></input>")
+  viewScoreButton = $("<input type='button' value='VIEW SCORE!' class = 'btn btn-primary'></input>");
   isLoggedIn = $("input[name=is-logged-in]").val();
   viewScoreButton.css({
     'text-align':'center',
