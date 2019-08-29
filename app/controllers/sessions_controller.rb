@@ -11,9 +11,11 @@ class SessionsController < ApplicationController
       log_in(user) 
       flash.now[:success] = "Welcome, #{current_user}" 
       redirect_to session[:my_previous_url] 
+    elsif user.nil?
+      render json: "#{session_params[:email]} does not exist. Check your email or sign up!"
     else
       # Create an error message 
-      flash.now[:danger] = "Invalid login!"
+      render json: "Wrong password!"
     end 
   end 
 

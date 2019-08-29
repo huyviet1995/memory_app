@@ -149,7 +149,7 @@ Game.showViewScoreButton = function() {
       })
     }
     else {
-      modal.open();
+      Modal.open();
     }
   })
   $('.button-section').append(viewScoreButton);
