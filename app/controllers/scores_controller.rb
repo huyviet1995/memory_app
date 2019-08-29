@@ -64,9 +64,11 @@ class ScoresController < ApplicationController
 
   # Get score for displaying in graph 
   def calculate_score_percentages(scores_arr)
-    array_size = (scores_arr.last - scores_arr.first) / 100 + 1;
+    return [100] if scores_arr.blank?
+    array_size = scores_arr.last / 100 + 1;
     score_counts_arr = Array.new(array_size) {0}
     count = 0
+
 
     scores_arr.each do |score|
       loop do
@@ -89,7 +91,7 @@ class ScoresController < ApplicationController
     total_sum = 0 
     score_counts_arr.each_with_index do |score_count, idx|
       if idx == array_size - 1
-        @score_percentage[array_size] = 100 - total_sum 
+        @score_percentage[array_size-1] = 100 - total_sum 
       else
         @score_percentage[idx] = (score_count*100)/sum
         total_sum = total_sum + @score_percentage[idx]  
