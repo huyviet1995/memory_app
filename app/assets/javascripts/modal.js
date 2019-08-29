@@ -67,4 +67,12 @@ $(document).ready(function() {
     Modal.switchViews({option: '#sign-up-option'}) 
   })
 
+  /* When click outside the box will remove the damn message  */
+  $(window).click(function(e) {
+    if ($('#modal-message').hasClass('show')) {
+      if (!e.target.matches('#sign-in-option')) {
+        $('#modal-message').empty();
+      }
+    }
+  })
 })
