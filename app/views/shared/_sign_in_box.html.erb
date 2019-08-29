@@ -40,7 +40,7 @@
         </div>
 
         <div id = "sign-up-view">
-          <%= form_with(url: '/users', method: :post, local: true) do |form|%>
+          <%= form_with(url: '/users', method: :post) do |form|%>
             <div class = 'row form-group'>
               <%= form.label :first_name, 'First Name', class: 'col-sm-3'  %>
               <%= form.text_field :first_name, class: 'col-sm-5'%>
@@ -65,6 +65,10 @@
               <%= form.label :password_confirmation, 'Retype pwd:', class: 'col-sm-3' %>
               <%= form.password_field :password_confirmation, class: 'col-sm-5'%>
             </div>
+
+            <%= form.hidden_field :score, value: @current_score %>
+            <%= form.hidden_field :current_lvl, value: @current_lvl %>
+            <%= form.hidden_field :lives_count, value: @lives_count%>
 
             <%= form.submit 'SIGN UP', class: 'btn btn-primary'%>
 

@@ -9,10 +9,16 @@ class UsersController < ApplicationController
     if @user.save
       log_in(@user)
       flash[:success] =  "Thank you for comment!, #{user_params[:email]}"
-      redirect_to session[:my_previous_url]
+
+      play_info = {}
+      play_info[:path] = session[:my_previous_url]
+      play_info[:level] = play_params[:current_lvl]
+      play_info[:score] = play_params[:score]
+      play_info[:lives_count] = play_params[:lives_count]
+
+      render json: play_info.to_json 
     else
-      flash[:error] = 'Your login might be incorrect!' 
-      redirect_to session[:my_previous_url]
+      render json: "#{user_params[:name]} already exists!" 
     end
   end
 
@@ -39,6 +45,14 @@ class UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation
+    )
+  end
+
+  def play_params
+    params.permit(
+      :current_lvl,
+      :score,
+      :lives_count
     )
   end
 
