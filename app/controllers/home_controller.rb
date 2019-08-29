@@ -14,6 +14,7 @@ class HomeController < ApplicationController
     @no_of_sqr = @game_difficulty[2]
     @current_lvl = current_lvl
     @random_square_coordinates = random_flipped_square_generator(@no_of_row, @no_of_col, @no_of_sqr).values
+    session[:request_referrer] = request.original_url
   end
 
   def scores

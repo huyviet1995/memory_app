@@ -28,6 +28,7 @@ class ScoresController < ApplicationController
   end 
 
   def save_play 
+    return if session[:request_referrer] == request.original_url
     new_play = Play.new(
       level: score_params[:level],
       score: score_params[:score],
@@ -35,6 +36,7 @@ class ScoresController < ApplicationController
     )
     if new_play
       new_play.save!
+      session[:request_referrer] = request.original_url
       return new_play
     else
       return nil
