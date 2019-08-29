@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   before_action :save_my_previous_url, only: [:create, :new]
-  before_action :disable_turbolinks_preview_cache, only: [:create, :new]
 
   def new
   end
@@ -11,8 +10,15 @@ class SessionsController < ApplicationController
     if (user && user.authenticate(session_params[:password])) 
       # Log the user and redirect to the user show page 
       log_in(user) 
-      flash.now[:success] = "Welcome, #{current_user}" 
-      render json: "#{session[:my_previous_url]}" 
+      flash[:success] = "Welcome, #{current_user}" 
+
+      play_info = {}
+      play_info[:path] = session[:my_previous_url]
+      play_info[:level] = session_params[:current_lvl]
+      play_info[:score] = session_params[:score]
+      play_info[:lives_count] = session_params[:lives_count]
+
+      render json: play_info.to_json 
     elsif user.nil?
       render json: "#{session_params[:email]} does not exist. Check your email or sign up!"
     else
@@ -36,10 +42,13 @@ class SessionsController < ApplicationController
       :last_name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :score,
+      :current_lvl,
+      :lives_count
     )
-  end 
-
+  end
+  
   def save_my_previous_url
     session[:my_previous_url] = URI(request.referer || '').path
   end

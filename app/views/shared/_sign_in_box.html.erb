@@ -30,6 +30,10 @@
               <%= form.password_field :password, class: 'col-sm-5'%>
             </div>
 
+            <%= form.hidden_field :score, value: @current_score %>
+            <%= form.hidden_field :current_lvl, value: @current_lvl %>
+            <%= form.hidden_field :lives_count, value: @lives_count%>
+
             <%= form.submit 'LOG IN', class: 'btn btn-primary btn-lg' %>
 
           <% end %>

@@ -29,12 +29,26 @@ Modal.registerAjaxReturn = function({container = '#modal-message'} = {}) {
   document.body.addEventListener('ajax:success', function(event) {
     [data, status, xhr] = event.detail;
     Modal.showMessage({
-      message: xhr.response,
+      message: 'Successful login',
     })
     $(container).addClass('show')
     $(container).addClass('ajax-success');
-    GameUtils.sleep(1000);
-    window.location.href = `${xhr.response}` 
+    GameUtils.sleep(1500);
+    play_info = JSON.parse(xhr.response);
+    if (play_info['path'].includes('/game')) {
+      debugger;
+      GameUtils.createAndSendFormWithOptions({
+        path: `/game?lvl=${play_info['level']}`,
+        params: {
+          score: play_info['score'],
+          lives_count: play_info['lives_count'],
+        },
+        method: 'POST'
+      })
+    }
+    else {
+      window.location.href = '/'
+    } 
   })
   document.body.addEventListener('ajax:error', function(event) {
     [data, status, xhr] = event.detail;
