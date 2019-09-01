@@ -3,11 +3,15 @@ class HomeController < ApplicationController
   before_action :set_score, only: [:game]
   before_action :set_lives_count, only: [:game]
   skip_before_action :verify_authenticity_token, only: [:game, :index]
+  per_request_react_rails_prerenderer
 
   def index
   end
 
   def game 
+    react_rails_prerenderer
+    react_rails_prerenderer.context
+
     @game_difficulty = set_game_difficulty
     @no_of_row = @game_difficulty[0]
     @no_of_col = @game_difficulty[1]
