@@ -1,22 +1,2 @@
-<nav class = "header navbar navbar-fixed-top navbar-text sticky-top navbar-collapse">
-  <% if !logged_in? %>
-    <%= render partial: 'shared/sign_in_box'%>
-  <% end %>
-  <div class = "container">
-    <%= link_to 'TEST YOUR MEMORY', main_path, class: 'intro'%>
-    <div class = 'menu'>
-      <div class='option'> <%= link_to 'MAIN', main_path%> </div>
-      <div class='option'> <%= link_to 'HELP', tutorial_path%> </div>
-      <div class='option'> <%= link_to 'ABOUT', about_path%> </div>
-      <div class='option' id = 'login'> <%= login_title %>
-        <% if logged_in? %>
-          <div id = 'dropdown-login'>
-            <li class = 'dropdown-item'><%=link_to 'Profile', user_path(current_user), class: 'current-user-menu'%></li>
-            <li class = 'dropdown-item'><%=link_to 'Log out','/logout', method: :delete, class: 'current-user-menu'%></li>
-          </div>
-         <%end %>
-      </div>
-</nav>
-
 <!--Adding the header and option component-->
-<%= react_component("Header",{})%>
+<%= react_component("Header", {}, {prerender: true})%>

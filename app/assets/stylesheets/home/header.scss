@@ -32,6 +32,12 @@
   text-decoration: none;
 }
 
+/* Style the logo text */
+.header .logo {
+  font-size: 40px;
+  color: white; 
+} 
+
 .dropdown-item a {
   color: red !important;
 }
@@ -72,7 +78,7 @@
 }
 
 /* menu on hover*/
-.header .container .menu .option:hover {
+.header .container .option:hover {
   text-decoration: none;
   font-weight: 600;
 }
