@@ -9,9 +9,7 @@ class HomeController < ApplicationController
   end
 
   def game 
-    react_rails_prerenderer
     react_rails_prerenderer.context
-
     @game_difficulty = set_game_difficulty
     @no_of_row = @game_difficulty[0]
     @no_of_col = @game_difficulty[1]
