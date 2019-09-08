@@ -3,7 +3,7 @@ import Option from './Option';
 
 export default class Header extends React.Component {
 
-  render () {
+  render() {
     return (
       <nav className = "header navbar navbar-fixed-top navbar-text sticky-top navbar-collapse">
         <div className = "container">

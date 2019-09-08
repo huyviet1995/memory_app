@@ -1,5 +1,6 @@
 import React from "react";
 import Square from "./Square";
+import $ from "jquery";
 
 export default class Board extends React.Component {
 
@@ -13,7 +14,12 @@ export default class Board extends React.Component {
       let square = [];
       for (let j = 0; j < boardCol; j++) {
         square.push(
-          <Square key = {`square ${i}, ${j}`} coordinate = {`[${i}, ${j}]`}></Square>
+          <Square key = {`square ${i}, ${j}`} 
+            coordinate = {`[${i}, ${j}]`}
+            squareWidth = {400/this.props.no_of_rows}
+            squareHeight = {400/this.props.no_of_cols}
+          >
+          </Square>
         )
       }
       board.push(<span className = 'row' key = {`board row ${i}`}>{square}</span>);
@@ -29,3 +35,4 @@ export default class Board extends React.Component {
     )
   }
 } 
+
